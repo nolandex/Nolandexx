@@ -1,0 +1,32 @@
+/* Payment Gateway Styles */
+.payment-method {
+  transition: all 0.2s ease;
+}
+
+.payment-method:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.loading-bar {
+  width: 0%;
+  transition: width 1s ease-in-out;
+}
+
+.method-item {
+  transition: all 0.2s ease;
+}
+
+.method-item:hover {
+  background-color: #f3f4f6;
+}
+
+.payment-details-content {
+  padding: 12px 0;
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
