@@ -5,10 +5,9 @@ const Home = () => {
   return (
     <section id="home" className="min-h-screen flex items-center relative z-10 pt-20 pb-8">
       <div className="container mx-auto px-4 text-center">
-        {/* Title - tetap sama seperti awal */}
+        {/* Title - hanya NolanDex */}
         <h1 className="text-5xl md:text-7xl font-bold mb-10">
-          NolanDex <br />
-          <span className="text-gray-400">Business Solutions</span>
+          NolanDex
         </h1>
 
         {/* Buttons */}
@@ -41,7 +40,7 @@ const Home = () => {
           </a>
 
           {/* Button 4: Social Media Icons */}
-          <div className="flex justify-center gap-4 mt-4">
+          <div className="glass flex items-center justify-center gap-4 p-4 rounded-lg hover:bg-white/20 transition-all duration-200 w-full max-w-md">
             <a
               href="https://www.instagram.com/nolandexco?igsh=MWV3cXRuejBqcGwyZg=="
               className="text-gray-400 hover:text-white transition-all duration-200"
@@ -74,13 +73,6 @@ const Home = () => {
             </a>
           </div>
         </div>
-
-        {/* Contact Section for Button 3 */}
-        <section id="contact-section" className="mt-20">
-          <h2 className="text-3xl font-bold mb-4">Hubungi Kami</h2>
-          <p className="text-gray-400">Silakan hubungi kami untuk informasi lebih lanjut tentang layanan kami.</p>
-          {/* Tambahkan konten lain sesuai kebutuhan, misalnya form kontak */}
-        </section>
       </div>
     </section>
   );
