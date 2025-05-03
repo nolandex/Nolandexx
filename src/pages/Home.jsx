@@ -3,11 +3,12 @@ import { FaGlobe, FaWhatsapp, FaCommentDots, FaInstagram, FaTiktok, FaFacebook, 
 
 const Home = () => {
   return (
-    <section id="home" className="min-h-screen relative z-10 pt-10 pb-8 bg-[#f0f4ff]">
+    <section id="home" className="min-h-screen flex items-center relative z-10 pt-20 pb-8">
       <div className="container mx-auto px-4 text-center">
-        {/* Title - hanya NolanDex, di atas */}
-        <h1 className="text-5xl md:text-7xl font-bold mb-10 text-[#111] font-['Arial',_sans-serif]">
-          NolanDex
+        {/* Title - tetap sama seperti awal */}
+        <h1 className="text-5xl md:text-7xl font-bold mb-10">
+          NolanDex <br />
+          <span className="text-gray-400">Business Solutions</span>
         </h1>
 
         {/* Buttons */}
@@ -15,7 +16,7 @@ const Home = () => {
           {/* Button 1: Pesan di Website */}
           <a
             href="https://nolandex.my.id"
-            className="flex items-center justify-center gap-2 p-4 rounded-lg bg-[#2563eb] text-white hover:bg-[#1d4ed8] transition-all duration-200 w-full max-w-md shadow-[0_6px_12px_rgba(0,0,0,0.1)] font-['Arial',_sans-serif] font-semibold"
+            className="glass flex items-center justify-center gap-2 p-4 rounded-lg hover:bg-white/20 transition-all duration-200 w-full max-w-md"
           >
             <FaGlobe />
             <span>Pesan di Website</span>
@@ -24,7 +25,7 @@ const Home = () => {
           {/* Button 2: Pesan di WhatsApp */}
           <a
             href="https://wa.me/6285156779923?text=Hi%2C%20I'm%20interested%20in%20your%20business%20setup%20services"
-            className="flex items-center justify-center gap-2 p-4 rounded-lg bg-[#2563eb] text-white hover:bg-[#1d4ed8] transition-all duration-200 w-full max-w-md shadow-[0_6px_12px_rgba(0,0,0,0.1)] font-['Arial',_sans-serif] font-semibold"
+            className="glass flex items-center justify-center gap-2 p-4 rounded-lg hover:bg-white/20 transition-all duration-200 w-full max-w-md"
           >
             <FaWhatsapp />
             <span>Pesan di WhatsApp</span>
@@ -33,46 +34,53 @@ const Home = () => {
           {/* Button 3: Pesan di Sini */}
           <a
             href="#contact-section"
-            className="flex items-center justify-center gap-2 p-4 rounded-lg bg-[#2563eb] text-white hover:bg-[#1d4ed8] transition-all duration-200 w-full max-w-md shadow-[0_6px_12px_rgba(0,0,0,0.1)] font-['Arial',_sans-serif] font-semibold"
+            className="glass flex items-center justify-center gap-2 p-4 rounded-lg hover:bg-white/20 transition-all duration-200 w-full max-w-md"
           >
             <FaCommentDots />
             <span>Pesan di Sini</span>
           </a>
 
           {/* Button 4: Social Media Icons */}
-          <div className="flex items-center justify-center gap-4 p-4 rounded-lg bg-[#2563eb] text-white w-full max-w-md shadow-[0_6px_12px_rgba(0,0,0,0.1)]">
+          <div className="flex justify-center gap-4 mt-4">
             <a
               href="https://www.instagram.com/nolandexco?igsh=MWV3cXRuejBqcGwyZg=="
-              className="text-white hover:text-gray-300 transition-all duration-200"
+              className="text-gray-400 hover:text-white transition-all duration-200"
             >
               <FaInstagram size={24} />
             </a>
             <a
               href="https://www.tiktok.com/@nolandexco?_t=ZS-8vwewu0P3sm&_r=1"
-              className="text-white hover:text-gray-300 transition-all duration-200"
+              className="text-gray-400 hover:text-white transition-all duration-200"
             >
               <FaTiktok size={24} />
             </a>
             <a
               href="https://www.facebook.com/nolandexco"
-              className="text-white hover:text-gray-300 transition-all duration-200"
+              className="text-gray-400 hover:text-white transition-all duration-200"
             >
               <FaFacebook size={24} />
             </a>
             <a
               href="https://t.me/nolandex"
-              className="text-white hover:text-gray-300 transition-all duration-200"
+              className="text-gray-400 hover:text-white transition-all duration-200"
             >
               <FaTelegram size={24} />
             </a>
             <a
               href="mailto:nolandexco@gmail.com"
-              className="text-white hover:text-gray-300 transition-all duration-200"
+              className="text-gray-400 hover:text-white transition-all duration-200"
             >
               <FaEnvelope size={24} />
             </a>
           </div>
         </div>
+
+        {/* Contact Section for Button 3 */}
+        <section id="contact-section" className="mt-20">
+          <h2 className="text-3xl font-bold mb-4">Hubungi Kami</h2>
+          <p className="text-gray-400">Silakan hubungi kami untuk informasi lebih lanjut tentang layanan kami.</p>
+          {/* Tambahkan konten lain sesuai kebutuhan, misalnya form kontak */}
+        </section>
       </div>
     </section>
   );
