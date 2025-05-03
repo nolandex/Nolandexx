@@ -25,23 +25,10 @@ const Home = () => {
       <section id="home" className="min-h-screen flex items-center relative z-10 pt-20 pb-8">
         <div className="container mx-auto px-4 text-center">
           {/* Title */}
-          <h1 className="text-5xl md:text-7xl font-bold mb-4">
+          <h1 className="text-5xl md:text-7xl font-bold mb-10">
             Orion <br />
             <span className="text-gray-400">Artificial Intelligence</span>
           </h1>
-
-          {/* Buttons */}
-          <div className="flex justify-center gap-4 mb-10">
-            <button className="glass px-8 py-4 text-white font-semibold hover:bg-gray-100 hover:text-black transition">
-              Explore Our Innovations
-            </button>
-            <button 
-              className="glass px-8 py-4 text-white font-semibold hover:bg-gray-100 hover:text-black transition"
-              onClick={() => navigate("/chatbot")}
-            >
-              Try Our First AI Chat
-            </button>
-          </div>
 
           {/* Info Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
@@ -51,24 +38,6 @@ const Home = () => {
                 <p className="text-gray-400">{item.description}</p>
               </div>
             ))}
-          </div>
-
-          {/* Decorative Leaf Animation */}
-          <div className="mt-12">
-            <div className="long-g long-g--7">
-              <div className="grow-ans" style={{ "--d": "3s" }}>
-                <div className="leaf leaf--0"></div>
-              </div>
-              <div className="grow-ans" style={{ "--d": "3.2s" }}>
-                <div className="leaf leaf--1"></div>
-              </div>
-              <div className="grow-ans" style={{ "--d": "3.5s" }}>
-                <div className="leaf leaf--2"></div>
-              </div>
-              <div className="grow-ans" style={{ "--d": "3.6s" }}>
-                <div className="leaf leaf--3"></div>
-              </div>
-            </div>
           </div>
         </div>
       </section>
