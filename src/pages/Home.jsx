@@ -5,10 +5,9 @@ const Home = () => {
   return (
     <section id="home" className="min-h-screen flex items-center relative z-10 pt-20 pb-8">
       <div className="container mx-auto px-4 text-center">
-        {/* Title - tetap sama seperti awal */}
+        {/* Title - Adjusted to remove Business Solutions and keep centered */}
         <h1 className="text-5xl md:text-7xl font-bold mb-10">
-          NolanDex <br />
-          <span className="text-gray-400">Business Solutions</span>
+          NolanDex
         </h1>
 
         {/* Buttons */}
@@ -77,9 +76,7 @@ const Home = () => {
 
         {/* Contact Section for Button 3 */}
         <section id="contact-section" className="mt-20">
-          <h2 className="text-3xl font-bold mb-4">Hubungi Kami</h2>
-          <p className="text-gray-400">Silakan hubungi kami untuk informasi lebih lanjut tentang layanan kami.</p>
-          {/* Tambahkan konten lain sesuai kebutuhan, misalnya form kontak */}
+          {/* Placeholder for additional content, e.g., contact form */}
         </section>
       </div>
     </section>
