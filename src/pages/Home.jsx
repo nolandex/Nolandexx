@@ -63,20 +63,20 @@ const Home = () => {
         </div>
 
         {/* Catalog Section */}
-        <div className="max-w-2xl mx-auto mt-8">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="max-w-lg mx-auto mt-8">
+          <div className="grid grid-cols-2 gap-3">
             {products.map((product) => (
               <div
                 key={product.id}
-                className="glass p-3 rounded-lg hover:bg-white/20 transition-all duration-200 flex flex-col items-center"
+                className="glass p-2 rounded-lg hover:bg-white/20 transition-all duration-200 flex flex-col items-center"
               >
                 <img
                   src={product.image}
                   alt={product.title}
-                  className="w-20 h-20 object-cover rounded-md mb-2"
+                  className="w-16 h-16 object-cover rounded-md mb-2"
                 />
-                <h3 className="text-sm font-medium text-white">{product.title}</h3>
-                <p className="text-gray-300 text-xs">{product.price}</p>
+                <h3 className="text-xs font-medium text-white">{product.title}</h3>
+                <p className="text-gray-300 text-[10px]">{product.price}</p>
               </div>
             ))}
           </div>
