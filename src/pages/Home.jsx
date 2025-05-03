@@ -5,7 +5,7 @@ const Home = () => {
   return (
     <section id="home" className="min-h-screen relative z-10 pt-10 pb-8 bg-[#f0f4ff]">
       <div className="container mx-auto px-4 text-center">
-        {/* Title - di atas */}
+        {/* Title - hanya NolanDex, di atas */}
         <h1 className="text-5xl md:text-7xl font-bold mb-10 text-[#111] font-['Arial',_sans-serif]">
           NolanDex
         </h1>
@@ -71,47 +71,6 @@ const Home = () => {
             >
               <FaEnvelope size={24} />
             </a>
-          </div>
-        </div>
-
-        {/* Pricing Section */}
-        <div className="mt-12 max-w-5xl mx-auto">
-          <h2 className="text-3xl font-bold mb-6 text-[#111] font-['Arial',_sans-serif]">Harga</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Pricing 1: Basic */}
-            <div className="glass p-6 rounded-lg shadow-[0_6px_12px_rgba(0,0,0,0.1)] bg-white/10 backdrop-blur-md">
-              <h3 className="text-xl font-semibold text-[#111] mb-2 font-['Arial',_sans-serif]">Basic</h3>
-              <p className="text-2xl font-bold text-[#111] mb-4 font-['Arial',_sans-serif]">Rp 500.000</p>
-              <ul className="text-sm text-gray-600 mb-4 font-['Arial',_sans-serif] text-left">
-                <li>✔ Konsultasi bisnis dasar</li>
-                <li>✔ Setup website sederhana</li>
-                <li>✔ Dukungan 1 bulan</li>
-              </ul>
-              <a
-                href="https://nolandex.my.id/payment"
-                className="flex items-center justify-center gap-2 p-3 rounded-lg bg-[#2563eb] text-white hover:bg-[#1d4ed8] transition-all duration-200 w-full font-['Arial',_sans-serif] font-semibold"
-              >
-                Bayar
-              </a>
-            </div>
-
-            {/* Pricing 2: Premium */}
-            <div className="glass p-6 rounded-lg shadow-[0_6px_12px_rgba(0,0,0,0.1)] bg-white/10 backdrop-blur-md">
-              <h3 className="text-xl font-semibold text-[#111] mb-2 font-['Arial',_sans-serif]">Premium</h3>
-              <p className="text-2xl font-bold text-[#111] mb-4 font-['Arial',_sans-serif]">Rp 1.500.000</p>
-              <ul className="text-sm text-gray-600 mb-4 font-['Arial',_sans-serif] text-left">
-                <li>✔ Konsultasi bisnis lengkap</li>
-                <li>✔ Website profesional</li>
-                <li>✔ Dukungan 3 bulan</li>
-                <li>✔ Optimasi media sosial</li>
-              </ul>
-              <a
-                href="https://nolandex.my.id/payment"
-                className="flex items-center justify-center gap-2 p-3 rounded-lg bg-[#2563eb] text-white hover:bg-[#1d4ed8] transition-all duration-200 w-full font-['Arial',_sans-serif] font-semibold"
-              >
-                Bayar
-              </a>
-            </div>
           </div>
         </div>
       </div>
