@@ -1,4 +1,5 @@
 import React from "react";
+import PaymentGateway from "../components/PaymentGateway";
 
 const Service = () => {
   return (
@@ -42,6 +43,15 @@ const Service = () => {
             <h3 className="text-xl font-semibold mb-3">🛡️ Cybersecurity</h3>
             <p className="text-gray-300">AI-driven security solutions to protect your digital assets.</p>
           </div>
+        </div>
+
+        {/* Payment Gateway Section */}
+        <div className="mt-16 mb-16">
+          <h3 className="text-2xl font-bold mb-6">Premium Membership</h3>
+          <p className="text-gray-300 mb-8 max-w-2xl mx-auto">
+            Upgrade to our premium membership to unlock exclusive features and services.
+          </p>
+          <PaymentGateway />
         </div>
       </div>
     </section>
