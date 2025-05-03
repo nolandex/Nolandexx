@@ -52,6 +52,24 @@ const Home = () => {
               </div>
             ))}
           </div>
+
+          {/* Decorative Leaf Animation */}
+          <div className="mt-12">
+            <div className="long-g long-g--7">
+              <div className="grow-ans" style={{ "--d": "3s" }}>
+                <div className="leaf leaf--0"></div>
+              </div>
+              <div className="grow-ans" style={{ "--d": "3.2s" }}>
+                <div className="leaf leaf--1"></div>
+              </div>
+              <div className="grow-ans" style={{ "--d": "3.5s" }}>
+                <div className="leaf leaf--2"></div>
+              </div>
+              <div className="grow-ans" style={{ "--d": "3.6s" }}>
+                <div className="leaf leaf--3"></div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </>
