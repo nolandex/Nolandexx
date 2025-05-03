@@ -1,85 +1,70 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Link in Bio - NolanDex</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <style>
-    body {
-      font-family: 'Arial', sans-serif;
-      background: #f0f4ff;
-      margin: 0;
-      padding: 2rem;
-      text-align: center;
-      color: #111;
-    }
-    h1 {
-      font-size: 1.8rem;
-      margin-bottom: 2rem;
-    }
-    .button {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.75rem;
-      background-color: #2563eb;
-      color: #fff;
-      text-decoration: none;
-      padding: 0.9rem 1.5rem;
-      border-radius: 999px;
-      font-size: 1rem;
-      font-weight: 600;
-      margin: 0.6rem auto;
-      width: 90%;
-      max-width: 320px;
-      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
-      transition: background 0.3s;
-    }
-    .button:hover {
-      background-color: #1d4ed8;
-    }
-    .social-icons {
-      margin-top: 2rem;
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-    }
-    .social-icons a {
-      color: #2563eb;
-      font-size: 1.4rem;
-      transition: color 0.3s;
-    }
-    .social-icons a:hover {
-      color: #1d4ed8;
-    }
-  </style>
-</head>
-<body>
-  <h1>NolanDex - Link in Bio</h1>
+import React from "react";
 
-  <!-- Button 1 -->
-  <a class="button" href="https://nolandex.my.id">
-    <i class="fas fa-globe"></i> Kunjungi Website
-  </a>
+const Home = () => {
+  const infoGridItems = [
+    {
+      title: "🚀 AI Solutions",
+      description: "Empowering business growth with AI",
+    },
+    {
+      title: "📚 AI Education",
+      description: "Advancing tech education",
+    },
+    {
+      title: "🌍 Global Presence",
+      description: "First AI company from our nation",
+    },
+    {
+      title: "🔬 AI Research",
+      description: "Innovative research projects",
+    },
+    {
+      title: "💡 Consulting",
+      description: "Expert AI strategy services",
+    },
+    {
+      title: "🤝 Partnerships",
+      description: "Collaborate with leaders",
+    },
+  ];
 
-  <!-- Button 2 -->
-  <a class="button" href="https://wa.me/6285156779923?text=Hi%2C%20I'm%20interested%20in%20your%20business%20setup%20services">
-    <i class="fab fa-whatsapp"></i> Hubungi via WhatsApp
-  </a>
+  return (
+    <section
+      id="home"
+      className="min-h-screen flex items-center relative z-10 pt-10 pb-8" // pt-20 diubah jadi pt-10 agar lebih ke atas
+    >
+      <div className="container mx-auto px-4 text-center">
+        {/* Title - Orion diganti NolanDex, Artificial Intelligence dihapus */}
+        <h1 className="text-5xl md:text-7xl font-bold mb-8">
+          NolanDex
+        </h1>
 
-  <!-- Button 3 -->
-  <a class="button" href="https://t.me/nolandex">
-    <i class="fab fa-telegram"></i> Hubungi via Telegram
-  </a>
+        {/* Info Grid - Button dengan desain baru */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          {infoGridItems.map((item, index) => (
+            <button
+              key={index}
+              className="relative glass p-6 rounded-xl bg-white/10 backdrop-blur-lg border border-white/20 
+                         hover:bg-white/20 hover:scale-105 hover:shadow-lg 
+                         transition-all duration-300 ease-in-out transform 
+                         group"
+            >
+              {/* Konten button */}
+              <h3 className="text-lg font-semibold mb-2 text-white group-hover:text-blue-300 transition-colors">
+                {item.title}
+              </h3>
+              <p className="text-sm text-gray-300 group-hover:text-gray-100">
+                {item.description}
+              </p>
 
-  <!-- Button 4: Social Media Icons -->
-  <div class="social-icons">
-    <a href="https://www.instagram.com/nolandexco?igsh=MWV3cXRuejBqcGwyZg=="><i class="fab fa-instagram"></i></a>
-    <a href="https://www.tiktok.com/@nolandexco?_t=ZS-8vwewu0P3sm&_r=1"><i class="fab fa-tiktok"></i></a>
-    <a href="https://www.facebook.com/nolandexco"><i class="fab fa-facebook"></i></a>
-    <a href="https://t.me/nolandex"><i class="fab fa-telegram"></i></a>
-    <a href="mailto:nolandexco@gmail.com"><i class="fas fa-envelope"></i></a>
-  </div>
-</body>
-</html>
+              {/* Efek animasi tambahan (border glow saat hover) */}
+              <span className="absolute inset-0 rounded-xl border-2 border-transparent group-hover:border-blue-500/50 transition-all duration-300" />
+            </button>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Home;
