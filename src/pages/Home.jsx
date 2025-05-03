@@ -3,15 +3,10 @@ import { FaGlobe, FaWhatsapp, FaCommentDots, FaInstagram, FaTiktok, FaFacebook, 
 
 const Home = () => {
   return (
-    <section id="home" className="min-h-screen flex items-center relative z-10 pt-20 pb-8">
+    <section id="home" className="min-h-screen relative z-10 pt-8 pb-8">
       <div className="container mx-auto px-4 text-center">
-        {/* Title - Adjusted to remove Business Solutions and keep centered */}
-        <h1 className="text-5xl md:text-7xl font-bold mb-10">
-          NolanDex
-        </h1>
-
-        {/* Buttons */}
-        <div className="flex flex-col items-center gap-4 max-w-5xl mx-auto">
+        {/* Buttons - Positioned at the top */}
+        <div className="flex flex-col items-center gap-4 max-w-5xl mx-auto mt-8">
           {/* Button 1: Pesan di Website */}
           <a
             href="https://nolandex.my.id"
@@ -40,7 +35,9 @@ const Home = () => {
           </a>
 
           {/* Button 4: Social Media Icons */}
-          <div className="flex justify-center gap-4 mt-4">
+          <div
+            className="glass flex items-center justify-center gap-4 p-4 rounded-lg hover:bg-white/20 transition-all duration-200 w-full max-w-md"
+          >
             <a
               href="https://www.instagram.com/nolandexco?igsh=MWV3cXRuejBqcGwyZg=="
               className="text-gray-400 hover:text-white transition-all duration-200"
@@ -73,6 +70,11 @@ const Home = () => {
             </a>
           </div>
         </div>
+
+        {/* Title - Below buttons */}
+        <h1 className="text-5xl md:text-7xl font-bold mt-10 mb-10">
+          NolanDex
+        </h1>
 
         {/* Contact Section for Button 3 */}
         <section id="contact-section" className="mt-20">
