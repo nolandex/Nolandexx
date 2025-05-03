@@ -3,16 +3,10 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="bg-black text-white py-8">
+    <footer className="bg-black text-white py-4">
       <div className="container mx-auto px-4 text-center">
-        {/* Logo & Tagline */}
-        <h2 className="text-2xl font-bold">Orion 🚀</h2>
-        <p className="text-gray-400 text-sm mt-2">
-          Bringing your ideas to the stars 🌌
-        </p>
-
         {/* Navigation Links */}
-        <div className="flex flex-wrap justify-center gap-4 mt-6">
+        <div className="flex flex-wrap justify-center gap-2 mt-3">
           <Link
             to="/"
             className="text-gray-300 hover:text-white transition duration-300"
@@ -40,14 +34,14 @@ const Footer = () => {
         </div>
 
         {/* Social Media Links */}
-        <div className="flex justify-center space-x-6 mt-6">
+        <div className="flex justify-center space-x-4 mt-3">
           <a
             href="https://instagram.com"
             target="_blank"
             rel="noopener noreferrer"
             className="text-gray-300 hover:text-white transition duration-300"
           >
-            <i className="fab fa-instagram text-xl"></i>
+            <i className="fab fa-instagram text-lg"></i>
           </a>
           <a
             href="https://twitter.com"
@@ -55,7 +49,7 @@ const Footer = () => {
             rel="noopener noreferrer"
             className="text-gray-300 hover:text-white transition duration-300"
           >
-            <i className="fab fa-twitter text-xl"></i>
+            <i className="fab fa-twitter text-lg"></i>
           </a>
           <a
             href="https://github.com"
@@ -63,12 +57,12 @@ const Footer = () => {
             rel="noopener noreferrer"
             className="text-gray-300 hover:text-white transition duration-300"
           >
-            <i className="fab fa-github text-xl"></i>
+            <i className="fab fa-github text-lg"></i>
           </a>
         </div>
 
         {/* Copyright */}
-        <p className="text-gray-500 text-sm mt-6">
+        <p className="text-gray-500 text-xs mt-3">
           © {new Date().getFullYear()} Orion. All rights reserved.
         </p>
       </div>
