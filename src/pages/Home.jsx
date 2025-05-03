@@ -1,86 +1,74 @@
-import { motion } from "framer-motion";
-import { FaWhatsapp, FaInstagram, FaGlobe, FaUserFriends } from "react-icons/fa";
+import React from "react";
 
 const Home = () => {
+  const infoGridItems = [
+    {
+      title: "AI Solutions",
+      emoji: "🚀",
+      description: "Cutting-edge AI for business growth",
+    },
+    {
+      title: "AI Education",
+      emoji: "📚",
+      description: "Learn about AI advancements",
+    },
+    {
+      title: "Global Presence",
+      emoji: "🌍",
+      description: "Representing our nation worldwide",
+    },
+    {
+      title: "Research",
+      emoji: "🔬",
+      description: "Innovative AI research projects",
+    },
+    {
+      title: "Consulting",
+      emoji: "💡",
+      description: "Expert AI strategy consulting",
+    },
+    {
+      title: "Partnerships",
+      emoji: "🤝",
+      description: "Collaborate with industry leaders",
+    },
+  ];
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center p-4">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="w-full max-w-md"
-      >
-        <div className="bg-white/30 backdrop-blur-lg rounded-2xl shadow-xl overflow-hidden border border-white/20">
-          <div className="flex flex-col items-center pt-8 pb-6 px-6">
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              className="rounded-full border-4 border-blue-400 p-1 mb-4"
+    <section id="home" className="min-h-screen flex items-center relative z-10 pt-20 pb-8 bg-gradient-to-br from-gray-900 to-blue-900">
+      <div className="container mx-auto px-4 text-center max-w-4xl">
+        {/* Title */}
+        <h1 className="text-5xl md:text-6xl font-bold mb-12 text-white">
+          Orion <br />
+          <span className="text-blue-300">Artificial Intelligence</span>
+        </h1>
+
+        {/* Info Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {infoGridItems.map((item, index) => (
+            <button
+              key={index}
+              className="bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-all duration-300 p-4 rounded-xl border border-white/10 text-left group"
             >
-              <img
-                src="https://via.placeholder.com/150"
-                alt="Profile"
-                className="w-24 h-24 rounded-full object-cover"
-              />
-            </motion.div>
-
-            <h1 className="text-2xl font-bold text-blue-800 tracking-wide mb-1">
-              NolanDex
-            </h1>
-            <p className="text-blue-600 font-medium tracking-wide mb-4">
-              Founder of NolanDex | Online Business Setup
-            </p>
-          </div>
-
-          <div className="space-y-3 px-6 pb-8">
-            <motion.a
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              href="https://wa.me/6285156779923"
-              className="flex items-center justify-center gap-3 bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-4 rounded-xl transition-all duration-300 shadow-md"
-            >
-              <FaWhatsapp className="text-xl" />
-              WhatsApp
-            </motion.a>
-
-            <motion.a
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              href="https://instagram.com/nolandavidco"
-              className="flex items-center justify-center gap-3 bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 px-4 rounded-xl transition-all duration-300 shadow-md"
-            >
-              <FaInstagram className="text-xl" />
-              Instagram
-            </motion.a>
-
-            <motion.a
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              href="https://nolandex.vercel.app"
-              className="flex items-center justify-center gap-3 bg-blue-700 hover:bg-blue-800 text-white font-bold py-3 px-4 rounded-xl transition-all duration-300 shadow-md"
-            >
-              <FaGlobe className="text-xl" />
-              Official Website
-            </motion.a>
-
-            <motion.a
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              href="https://nolandex.vercel.app/reseller"
-              className="flex items-center justify-center gap-3 bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-4 rounded-xl transition-all duration-300 shadow-md"
-            >
-              <FaUserFriends className="text-xl" />
-              Reseller Program
-            </motion.a>
-          </div>
-
-          <div className="bg-blue-500/10 py-3 text-center">
-            <p className="text-blue-700 text-sm font-medium tracking-wide">
-              Powered by NolanDex
-            </p>
-          </div>
+              <div className="flex items-start gap-3">
+                <span className="text-2xl">{item.emoji}</span>
+                <div>
+                  <h3 className="font-medium text-white group-hover:text-blue-300 transition-colors">
+                    {item.title}
+                  </h3>
+                  <p className="text-sm text-white/70">{item.description}</p>
+                </div>
+              </div>
+            </button>
+          ))}
         </div>
-      </motion.div>
-    </div>
+
+        {/* Additional CTA */}
+        <button className="mt-12 px-8 py-3 bg-blue-600 hover:bg-blue-700 rounded-full text-white font-medium shadow-lg hover:shadow-blue-500/30 transition-all">
+          Contact Our Team
+        </button>
+      </div>
+    </section>
   );
 };
 
