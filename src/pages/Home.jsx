@@ -22,22 +22,16 @@ const Home = () => {
   return (
     <>
       {/* Hero Section */}
-      <section id="home" className="min-h-screen flex items-center relative z-10 pt-32 pb-12">
+      <section id="home" className="min-h-screen flex items-center relative z-10 pt-20 pb-8">
         <div className="container mx-auto px-4 text-center">
           {/* Title */}
-          <h1 className="text-5xl md:text-7xl font-bold mb-6">
+          <h1 className="text-5xl md:text-7xl font-bold mb-4">
             Orion <br />
             <span className="text-gray-400">Artificial Intelligence</span>
           </h1>
 
-          {/* Description */}
-          <p className="text-gray-400 text-lg md:text-xl mb-10 max-w-3xl mx-auto">
-            Orion is a leading AI company committed to building innovative technology solutions that not only transform
-            businesses but also prioritize education, ensuring a broader impact on society and the digital future.
-          </p>
-
           {/* Buttons */}
-          <div className="flex justify-center gap-4 mb-12">
+          <div className="flex justify-center gap-4 mb-10">
             <button className="glass px-8 py-4 text-white font-semibold hover:bg-gray-100 hover:text-black transition">
               Explore Our Innovations
             </button>
