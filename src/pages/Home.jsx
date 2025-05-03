@@ -1,9 +1,6 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 
 const Home = () => {
-  const navigate = useNavigate();
-
   const infoGridItems = [
     {
       title: "🚀 AI for the Future",
@@ -20,28 +17,25 @@ const Home = () => {
   ];
 
   return (
-    <>
-      {/* Hero Section */}
-      <section id="home" className="min-h-screen flex items-center relative z-10 pt-20 pb-8">
-        <div className="container mx-auto px-4 text-center">
-          {/* Title */}
-          <h1 className="text-5xl md:text-7xl font-bold mb-10">
-            Orion <br />
-            <span className="text-gray-400">Artificial Intelligence</span>
-          </h1>
+    <section id="home" className="min-h-screen flex items-center relative z-10 pt-20 pb-8">
+      <div className="container mx-auto px-4 text-center">
+        {/* Title */}
+        <h1 className="text-5xl md:text-7xl font-bold mb-10">
+          Orion <br />
+          <span className="text-gray-400">Artificial Intelligence</span>
+        </h1>
 
-          {/* Info Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
-            {infoGridItems.map((item, index) => (
-              <div key={index} className="glass p-6 rounded-lg">
-                <h3 className="text-xl font-semibold mb-3">{item.title}</h3>
-                <p className="text-gray-400">{item.description}</p>
-              </div>
-            ))}
-          </div>
+        {/* Info Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
+          {infoGridItems.map((item, index) => (
+            <div key={index} className="glass p-6 rounded-lg">
+              <h3 className="text-xl font-semibold mb-3">{item.title}</h3>
+              <p className="text-gray-400">{item.description}</p>
+            </div>
+          ))}
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 };
 
