@@ -19,7 +19,7 @@ const Home = () => {
     },
   ];
 
-  // Initialize particles
+  // Inisialisasi partikel
   const particlesInit = async (main) => {
     await loadFull(main);
   };
@@ -28,14 +28,14 @@ const Home = () => {
     <>
       {/* Hero Section */}
       <section id="home" className="min-h-screen flex items-center relative z-10 pt-32 pb-12">
-        {/* Particle Background */}
+        {/* Animasi Background Partikel */}
         <Particles
           id="tsparticles"
           init={particlesInit}
           options={{
             background: {
               color: {
-                value: "#000000", // Matches bg-black
+                value: "#000000", // Latar belakang hitam
               },
             },
             fpsLimit: 60,
@@ -103,19 +103,19 @@ const Home = () => {
           className="absolute inset-0 z-0"
         />
         <div className="container mx-auto px-4 text-center relative z-10">
-          {/* Title */}
+          {/* Judul */}
           <h1 className="text-5xl md:text-7xl font-bold mb-6">
             Orion <br />
             <span className="text-gray-400">Artificial Intelligence</span>
           </h1>
 
-          {/* Description */}
+          {/* Deskripsi */}
           <p className="text-gray-400 text-lg md:text-xl mb-10 max-w-3xl mx-auto">
             Orion is a leading AI company committed to building innovative technology solutions that not only transform
             businesses but also prioritize education, ensuring a broader impact on society and the digital future.
           </p>
 
-          {/* Buttons */}
+          {/* Tombol */}
           <div className="flex justify-center gap-4 mb-12">
             <button className="glass px-8 py-4 text-white font-semibold hover:bg-gray-100 hover:text-black transition">
               Explore Our Innovations
