@@ -56,14 +56,14 @@ const Home = () => {
             <a href="https://t.me/nolandex" className="text-gray-400 hover:text-white transition-all duration-200">
               <FaTelegram size={24} />
             </a>
-            <a href="mailto:nolandexco@gmail.com" className=">';text-gray-400 hover:text-white transition-all duration-200">
+            <a href="mailto:nolandexco@gmail.com" className="text-gray-400 hover:text-white transition-all duration-200">
               <FaEnvelope size={24} />
             </a>
           </div>
         </div>
 
         {/* Catalog Section */}
-        <div className="max-w-3xl mx-auto mt-8">
+        <div className="max-w-2xl mx-auto mt-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {products.map((product) => (
               <div
@@ -73,10 +73,10 @@ const Home = () => {
                 <img
                   src={product.image}
                   alt={product.title}
-                  className="w-24 h-24 object-cover rounded-md mb-3"
+                  className="w-20 h-20 object-cover rounded-md mb-2"
                 />
-                <h3 className="text-base font-medium text-white">{product.title}</h3>
-                <p className="text-gray-300 text-sm">{product.price}</p>
+                <h3 className="text-sm font-medium text-white">{product.title}</h3>
+                <p className="text-gray-300 text-xs">{product.price}</p>
               </div>
             ))}
           </div>
