@@ -1,7 +1,7 @@
 import React from "react";
 import { FaGlobe, FaWhatsapp, FaCommentDots, FaInstagram, FaTiktok, FaFacebook, FaTelegram, FaEnvelope } from "react-icons/fa";
 
-// Sample product data (replace with actual data or props as needed)
+// Sample product data (6 products)
 const products = [
   { id: 1, title: "Product 1", price: "$29.99", image: "https://via.placeholder.com/150" },
   { id: 2, title: "Product 2", price: "$39.99", image: "https://via.placeholder.com/150" },
@@ -9,19 +9,16 @@ const products = [
   { id: 4, title: "Product 4", price: "$49.99", image: "https://via.placeholder.com/150" },
   { id: 5, title: "Product 5", price: "$24.99", image: "https://via.placeholder.com/150" },
   { id: 6, title: "Product 6", price: "$34.99", image: "https://via.placeholder.com/150" },
-  { id: 7, title: "Product 7", price: "$44.99", image: "https://via.placeholder.com/150" },
-  { id: 8, title: "Product 8", price: "$54.99", image: "https://via.placeholder.com/150" },
-  { id: 9, title: "Product 9", price: "$14.99", image: "https://via.placeholder.com/150" },
-  { id: 10, title: "Product 10", price: "$64.99", image: "https://via.placeholder.com/150" },
-  { id: 11, title: "Product 11", price: "$74.99", image: "https://via.placeholder.com/150" },
-  { id: 12, title: "Product 12", price: "$84.99", image: "https://via.placeholder.com/150" },
 ];
 
 const Home = () => {
   return (
     <section id="home" className="min-h-screen relative z-10 pt-8 pb-8">
       <div className="container mx-auto px-4 text-center">
-        {/* Buttons - Positioned at the top */}
+        {/* Title - Positioned at the very top */}
+        <h1 className="text-5xl md:text-7xl font-bold mt-10 mb-10">NolanDex</h1>
+
+        {/* Buttons - Below title */}
         <div className="flex flex-col items-center gap-4 max-w-5xl mx-auto mt-8">
           <a
             href="https://nolandex.my.id"
@@ -59,38 +56,30 @@ const Home = () => {
             <a href="https://t.me/nolandex" className="text-gray-400 hover:text-white transition-all duration-200">
               <FaTelegram size={24} />
             </a>
-            <a href="mailto:nolandexco@gmail.com" className="text-gray-400 hover:text-white transition-all duration-200">
+            <a href="mailto:nolandexco@gmail.com" className=">';text-gray-400 hover:text-white transition-all duration-200">
               <FaEnvelope size={24} />
             </a>
           </div>
         </div>
 
-        {/* Title - Below buttons */}
-        <h1 className="text-5xl md:text-7xl font-bold mt-10 mb-10">NolanDex</h1>
-
         {/* Catalog Section */}
-        <div className="max-w-5xl mx-auto mt-8">
-          {[...Array(6)].map((_, catalogIndex) => (
-            <div key={catalogIndex} className="mb-12">
-              <h2 className="text-2xl font-semibold text-white mb-6">Catalog {catalogIndex + 1}</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {products.slice(catalogIndex * 2, catalogIndex * 2 + 2).map((product) => (
-                  <div
-                    key={product.id}
-                    className="glass p-4 rounded-lg hover:bg-white/20 transition-all duration-200 flex flex-col items-center"
-                  >
-                    <img
-                      src={product.image}
-                      alt={product.title}
-                      className="w-32 h-32 object-cover rounded-md mb-4"
-                    />
-                    <h3 className="text-lg font-medium text-white">{product.title}</h3>
-                    <p className="text-gray-300">{product.price}</p>
-                  </div>
-                ))}
+        <div className="max-w-3xl mx-auto mt-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {products.map((product) => (
+              <div
+                key={product.id}
+                className="glass p-3 rounded-lg hover:bg-white/20 transition-all duration-200 flex flex-col items-center"
+              >
+                <img
+                  src={product.image}
+                  alt={product.title}
+                  className="w-24 h-24 object-cover rounded-md mb-3"
+                />
+                <h3 className="text-base font-medium text-white">{product.title}</h3>
+                <p className="text-gray-300 text-sm">{product.price}</p>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
 
         {/* Contact Section for Button 3 */}
