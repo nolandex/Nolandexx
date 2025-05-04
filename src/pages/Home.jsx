@@ -12,8 +12,8 @@ import {
 import { products } from "../data/products"; // Sudah diperbaiki: berada dalam folder src
 import "./Home.css";
 
+// Lazy load the components
 const ProductSelector = lazy(() => import("../components/ProductSelector/ProductSelector"));
-const Cart = lazy(() => import("../components/Cart/Cart"));
 
 const Home = () => {
   const [cart, setCart] = useState([]);
