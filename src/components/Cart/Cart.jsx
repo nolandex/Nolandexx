@@ -13,9 +13,11 @@ const Cart = ({ cart }) => {
         <>
           <ul>
             {cart.map((item, index) => (
-              <li key={index}>
-                {item.product} - {item.variant} (Rp {item.price.toLocaleString("id-ID")}) x{" "}
-                {item.quantity} = Rp {(item.price * item.quantity).toLocaleString("id-ID")}
+              <li key={index} className="cart-item">
+                <div className="cart-item-details">
+                  <span>{item.product} - {item.variant}</span>
+                  <span>Rp {item.price.toLocaleString("id-ID")} x {item.quantity} = Rp {(item.price * item.quantity).toLocaleString("id-ID")}</span>
+                </div>
               </li>
             ))}
           </ul>
