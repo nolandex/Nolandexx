@@ -157,4 +157,10 @@ const Home = () => {
           )}
         </div>
 
-        <section id
+        <section id="contact-section" className="mt-20"></section>
+      </div>
+    </section>
+  );
+};
+
+export default Home;
