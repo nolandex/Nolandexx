@@ -9,10 +9,9 @@ import {
   FaTelegram,
   FaEnvelope,
 } from "react-icons/fa";
-import { products } from "../../data/products";
+import { products } from "../../data/products"; // Impor dari src/data/products.js
 import "./Home.css";
 
-// Lazy load components
 const ProductSelector = lazy(() => import("../../components/ProductSelector/ProductSelector"));
 const Cart = lazy(() => import("../../components/Cart/Cart"));
 
@@ -91,7 +90,11 @@ const Home = () => {
             >
               <FaFacebook size={24} />
             </a>
-            <a href="https://t.me/nolandex" className="text-gray-400 hover:text-white" aria-label="Telegram">
+            <a
+              href="https://t.me/nolandex"
+              className="text-gray-400 hover:text-white"
+              aria-label="Telegram"
+            >
               <FaTelegram size={24} />
             </a>
             <a
