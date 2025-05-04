@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
-import Services from "./pages/Services";
+// import Services from "./pages/Services"; // Dihapus karena file tidak ada
 
 function App() {
   return (
@@ -9,7 +9,7 @@ function App() {
       <main className="flex-grow">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/services" element={<Services />} />
+          {/* <Route path="/services" element={<Services />} /> */}
         </Routes>
       </main>
       <Footer />
