@@ -11,7 +11,7 @@ const ProductSelector = ({ onAddToCart }) => {
   useEffect(() => {
     // Reset variant saat produk berubah
     setSelectedVariantId(selectedProduct.variants[0].id);
-  }, [selectedProductId]);
+  }, [selectedProductId, selectedProduct.variants]); // Fixing the missing dependency here
 
   const handleAddToCart = () => {
     const variant = selectedProduct.variants.find((v) => v.id === selectedVariantId);
