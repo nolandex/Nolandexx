@@ -1,115 +1,82 @@
-/* src/components/ProductSelector/ProductSelector.css */
+import React, { useState } from "react";
+import "./ProductSelector.css";
 
-.product-selector {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 12px;
-  padding: 20px;
-  text-align: center;
-  color: white;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  transition: background 0.3s ease;
-}
+const ProductSelector = ({ onAddToCart, products }) => {
+  const [selectedProduct, setSelectedProduct] = useState("");
+  const [selectedVariant, setSelectedVariant] = useState("");
+  const [quantity, setQuantity] = useState(1);
 
-.product-selector:hover {
-  background: rgba(255, 255, 255, 0.15);
-}
+  const handleAdd = () => {
+    if (!selectedProduct || !selectedVariant || quantity < 1) return;
 
-.product-selector label {
-  display: block;
-  margin: 12px 0 6px;
-  font-weight: 600;
-  color: white;
-}
+    const product = products.find((p) => p.name === selectedProduct);
+    const price = product.variants[selectedVariant];
 
-.product-selector select,
-.product-selector input {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 16px;
-  border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  background: rgba(255, 255, 255, 0.05);
-  color: white;
-}
+    onAddToCart({
+      product: selectedProduct,
+      variant: selectedVariant,
+      quantity: parseInt(quantity),
+      price,
+    });
 
-.product-selector button {
-  width: 100%;
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 8px;
-  padding: 12px;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
+    setQuantity(1);
+  };
 
-.product-selector button:hover {
-  background: rgba(255, 255, 255, 0.3);
-}
+  return (
+    <div className="product-selector">
+      <label htmlFor="product">Product</label>
+      <select
+        id="product"
+        value={selectedProduct}
+        onChange={(e) => {
+          setSelectedProduct(e.target.value);
+          setSelectedVariant("");
+        }}
+      >
+        <option value="">Select a product</option>
+        {products.map((p) => (
+          <option key={p.name} value={p.name}>
+            {p.name}
+          </option>
+        ))}
+      </select>
 
-/* src/components/Cart/Cart.css */
+      {selectedProduct && (
+        <>
+          <label htmlFor="variant">Variant</label>
+          <select
+            id="variant"
+            value={selectedVariant}
+            onChange={(e) => setSelectedVariant(e.target.value)}
+          >
+            <option value="">Select a variant</option>
+            {Object.keys(
+              products.find((p) => p.name === selectedProduct).variants
+            ).map((v) => (
+              <option key={v} value={v}>
+                {v}
+              </option>
+            ))}
+          </select>
+        </>
+      )}
 
-.cart {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 12px;
-  padding: 20px;
-  text-align: center;
-  color: white;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  transition: background 0.3s ease;
-}
+      {selectedVariant && (
+        <>
+          <label htmlFor="quantity">Quantity</label>
+          <input
+            id="quantity"
+            type="number"
+            min="1"
+            value={quantity}
+            onChange={(e) => setQuantity(e.target.value)}
+          />
+        </>
+      )}
 
-.cart:hover {
-  background: rgba(255, 255, 255, 0.15);
-}
+      <button onClick={handleAdd}>Add to Cart</button>
+    </div>
+  );
+};
 
-.cart h2 {
-  margin-bottom: 1rem;
-}
-
-.cart ul {
-  list-style: none;
-  padding: 0;
-}
-
-.cart li {
-  display: flex;
-  justify-content: space-between;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 10px;
-  border-radius: 8px;
-  margin-bottom: 10px;
-}
-
-.cart-item-details {
-  text-align: left;
-  color: white;
-}
-
-.cart-item-remove {
-  background: #ff3b30;
-  color: white;
-  border: none;
-  padding: 6px 10px;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.cart-item-remove:hover {
-  background: #ff4d4d;
-}
-
-.cart h3 {
-  text-align: right;
-  margin-top: 20px;
-  font-size: 1.2rem;
-  font-weight: bold;
-}
+export default ProductSelector;
