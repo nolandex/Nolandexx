@@ -1,0 +1,41 @@
+.product-selector {
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.product-selector h2 {
+  text-align: center;
+}
+
+.product-selector div {
+  margin: 10px 0;
+}
+
+.product-selector label {
+  display: inline-block;
+  width: 100px;
+}
+
+.product-selector select,
+.product-selector input {
+  padding: 5px;
+  width: 200px;
+}
+
+.product selector button {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.product-selector button:hover {
+  background-color: #0056b3;
+}
