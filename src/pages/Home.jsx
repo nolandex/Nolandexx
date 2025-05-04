@@ -9,11 +9,11 @@ import {
   FaTelegram,
   FaEnvelope,
 } from "react-icons/fa";
-import products from "../../data/products"; // Correct import path
+import { products } from "../data/products"; // Sudah diperbaiki: berada dalam folder src
 import "./Home.css";
 
-const ProductSelector = lazy(() => import("../../components/ProductSelector/ProductSelector"));
-const Cart = lazy(() => import("../../components/Cart/Cart"));
+const ProductSelector = lazy(() => import("../components/ProductSelector/ProductSelector"));
+const Cart = lazy(() => import("../components/Cart/Cart"));
 
 const Home = () => {
   const [cart, setCart] = useState([]);
@@ -76,7 +76,7 @@ const Home = () => {
         </div>
 
         {/* Social media */}
-        <div className="glass flex items-center justify-center gap-4 p-4 rounded-lg hover:bg-white/20 transition duration-200 w-full max-w-md">
+        <div className="glass flex items-center justify-center gap-4 p-4 rounded-lg hover:bg-white/20 transition duration-200 w-full max-w-md mt-6">
           <a href="https://www.instagram.com/nolandexco" className="text-gray-400 hover:text-white">
             <FaInstagram size={24} />
           </a>
@@ -97,7 +97,7 @@ const Home = () => {
         {/* Product Selector */}
         <div className="max-w-lg mx-auto mt-12">
           <Suspense fallback={<div>Loading...</div>}>
-            <ProductSelector onAddToCart={addToCart} />
+            <ProductSelector onAddToCart={addToCart} products={products} />
           </Suspense>
         </div>
 
