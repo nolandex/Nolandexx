@@ -1,92 +1,90 @@
 /* src/pages/Home/Home.css */
 
-/* Efek glassmorphism */
+/* Efek glassmorphism untuk tombol dan elemen lainnya */
 .glass {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 8px;
-  transition: background 0.3s ease;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.1); /* Latar belakang transparan */
+  backdrop-filter: blur(10px); /* Efek blur */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Border halus */
+  border-radius: 8px; /* Sudut membulat */
+  transition: background 0.3s ease; /* Transisi halus saat hover */
 }
 
-/* Hover efek */
+/* Hover untuk elemen glass */
 .glass:hover {
   background: rgba(255, 255, 255, 0.2);
 }
 
-/* Section Home */
+/* Styling utama untuk section home */
 #home {
-  background: linear-gradient(135deg, #1a1a1a, #2c3e50);
-  color: white;
-  min-height: 100vh;
-  overflow-x: hidden;
+  color: white; /* Warna teks utama */
+  min-height: 100vh; /* Tinggi minimal layar penuh */
+  overflow-x: hidden; /* Mencegah scroll horizontal */
   padding-top: 2rem;
   padding-bottom: 2rem;
 }
 
-/* Container */
+/* Container utama */
 .container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1rem;
+  max-width: 1200px; /* Lebar maksimum */
+  margin: 0 auto; /* Pusatkan */
+  padding: 0 1rem; /* Padding responsif */
 }
 
-/* Judul */
+/* Judul utama */
 h1 {
-  font-size: 3rem;
-  font-weight: 700;
+  font-size: 3rem; /* Ukuran font untuk layar kecil */
+  font-weight: 700; /* Tebal */
   margin-top: 2.5rem;
   margin-bottom: 2.5rem;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Bayangan teks */
 }
 
-/* Responsif judul */
+/* Responsif untuk layar besar */
 @media (min-width: 768px) {
   h1 {
-    font-size: 4.5rem;
+    font-size: 4.5rem; /* Ukuran font lebih besar */
   }
 }
 
-/* Link dan tombol */
-:is(a, button).glass {
+/* Styling untuk link dan tombol */
+a.glass, button.glass {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
+  gap: 0.5rem; /* Jarak antar elemen */
   padding: 1rem;
   font-size: 1rem;
   color: white;
-  text-decoration: none;
+  text-decoration: none; /* Hilangkan garis bawah */
   width: 100%;
-  max-width: 300px;
-  margin: 0.5rem auto;
+  max-width: 300px; /* Lebar maksimum */
+  margin: 0.5rem auto; /* Pusatkan */
 }
 
-/* Hover tombol */
+/* Hover untuk tombol */
 button.glass:hover {
   background: rgba(255, 255, 255, 0.3);
   cursor: pointer;
 }
 
-/* Grup ikon sosial media */
-.social-icons {
+/* Styling untuk daftar sosial media */
+.glass div {
   display: flex;
   justify-content: center;
-  gap: 1rem;
+  gap: 1rem; /* Jarak antar ikon */
 }
 
-/* Ikon sosial */
-.social-icons a {
-  color: #d1d5db;
+/* Ikon sosial media */
+.glass a {
+  color: #d1d5db; /* Abu-abu terang */
   transition: color 0.3s ease;
 }
 
-.social-icons a:hover {
-  color: white;
+.glass a:hover {
+  color: white; /* Putih saat hover */
 }
 
-/* Responsif */
+/* Responsif untuk layar kecil */
 @media (max-width: 640px) {
   .container {
     padding: 0 0.5rem;
@@ -96,7 +94,7 @@ button.glass:hover {
     font-size: 2.5rem;
   }
 
-  :is(a, button).glass {
+  a.glass, button.glass {
     font-size: 0.9rem;
     padding: 0.75rem;
   }
