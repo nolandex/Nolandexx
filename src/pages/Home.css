@@ -1,90 +1,89 @@
 /* src/pages/Home/Home.css */
 
-/* Efek glassmorphism untuk tombol dan elemen lainnya */
+/* Efek glassmorphism */
 .glass {
-  background: rgba(255, 255, 255, 0.1); /* Latar belakang transparan */
-  backdrop-filter: blur(10px); /* Efek blur */
-  border: 1px solid rgba(255, 255, 255, 0.2); /* Border halus */
-  border-radius: 8px; /* Sudut membulat */
-  transition: background 0.3s ease; /* Transisi halus saat hover */
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  transition: background 0.3s ease;
 }
 
-/* Hover untuk elemen glass */
 .glass:hover {
   background: rgba(255, 255, 255, 0.2);
 }
 
-/* Styling utama untuk section home */
+/* Styling untuk section home */
 #home {
-  color: white; /* Warna teks utama */
-  min-height: 100vh; /* Tinggi minimal layar penuh */
-  overflow-x: hidden; /* Mencegah scroll horizontal */
+  color: white;
+  min-height: 100vh;
+  overflow-x: hidden;
   padding-top: 2rem;
   padding-bottom: 2rem;
 }
 
 /* Container utama */
 .container {
-  max-width: 1200px; /* Lebar maksimum */
-  margin: 0 auto; /* Pusatkan */
-  padding: 0 1rem; /* Padding responsif */
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
 }
 
 /* Judul utama */
 h1 {
-  font-size: 3rem; /* Ukuran font untuk layar kecil */
-  font-weight: 700; /* Tebal */
+  font-size: 3rem;
+  font-weight: 700;
   margin-top: 2.5rem;
   margin-bottom: 2.5rem;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Bayangan teks */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-/* Responsif untuk layar besar */
 @media (min-width: 768px) {
   h1 {
-    font-size: 4.5rem; /* Ukuran font lebih besar */
+    font-size: 4.5rem;
   }
 }
 
-/* Styling untuk link dan tombol */
-a.glass, button.glass {
+/* Styling untuk produk di keranjang */
+.cart-item {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem; /* Jarak antar elemen */
+  justify-content: space-between;
   padding: 1rem;
-  font-size: 1rem;
-  color: white;
-  text-decoration: none; /* Hilangkan garis bawah */
-  width: 100%;
-  max-width: 300px; /* Lebar maksimum */
-  margin: 0.5rem auto; /* Pusatkan */
+  background: rgba(255, 255, 255, 0.1);
+  margin-bottom: 1rem;
+  border-radius: 8px;
 }
 
-/* Hover untuk tombol */
-button.glass:hover {
-  background: rgba(255, 255, 255, 0.3);
-  cursor: pointer;
-}
-
-/* Styling untuk daftar sosial media */
-.glass div {
+.cart-item-details {
   display: flex;
-  justify-content: center;
-  gap: 1rem; /* Jarak antar ikon */
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
-/* Ikon sosial media */
-.glass a {
-  color: #d1d5db; /* Abu-abu terang */
-  transition: color 0.3s ease;
+.cart-item-details span {
+  font-size: 1.1rem;
+  color: white;
 }
 
-.glass a:hover {
-  color: white; /* Putih saat hover */
+.cart-item-remove {
+  background: #ff3b30;
+  color: white;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s ease;
 }
 
-/* Responsif untuk layar kecil */
+.cart-item-remove:hover {
+  background: #ff4d4d;
+}
+
+.cart-item-remove:focus {
+  outline: none;
+}
+
+/* Responsive untuk produk dan keranjang */
 @media (max-width: 640px) {
   .container {
     padding: 0 0.5rem;
@@ -94,8 +93,7 @@ button.glass:hover {
     font-size: 2.5rem;
   }
 
-  a.glass, button.glass {
-    font-size: 0.9rem;
-    padding: 0.75rem;
+  .cart-item-details span {
+    font-size: 1rem;
   }
 }
