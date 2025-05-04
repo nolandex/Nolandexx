@@ -19,12 +19,7 @@ const Footer = () => {
           >
             About
           </Link>
-          <Link
-            to="/services"
-            className="text-gray-300 hover:text-white transition duration-300"
-          >
-            Services
-          </Link>
+          {/* Services link removed to prevent missing module error */}
           <Link
             to="/contact"
             className="text-gray-300 hover:text-white transition duration-300"
