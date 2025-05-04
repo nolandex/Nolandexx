@@ -1,15 +1,6 @@
 import React, { useState, lazy, Suspense } from "react";
-import {
-  FaGlobe,
-  FaWhatsapp,
-  FaCommentDots,
-  FaInstagram,
-  FaTiktok,
-  FaFacebook,
-  FaTelegram,
-  FaEnvelope,
-} from "react-icons/fa";
-import { products } from "../data/products"; // Make sure it's in the right folder
+import { FaGlobe, FaWhatsapp, FaCommentDots, FaInstagram, FaTiktok, FaFacebook, FaTelegram, FaEnvelope } from "react-icons/fa";
+import { products } from "../data/products"; // Ensure it's the correct path
 import "./Home.css";
 
 const ProductSelector = lazy(() => import("../components/ProductSelector/ProductSelector"));
@@ -20,8 +11,7 @@ const Home = () => {
 
   const addToCart = (item) => {
     const existingItemIndex = cart.findIndex(
-      (cartItem) =>
-        cartItem.product === item.product && cartItem.variant === item.variant
+      (cartItem) => cartItem.product === item.product && cartItem.variant === item.variant
     );
 
     if (existingItemIndex !== -1) {
@@ -50,7 +40,7 @@ const Home = () => {
       )
       .join("%0A");
     const total = cart.reduce(
-      (sum, item) => sum + item.price * item.quantity, // Correct calculation for total
+      (sum, item) => sum + item.price * item.quantity,
       0
     );
     return `Hi%2C%20I%20want%20to%20buy:%0A${items}%0ATotal: Rp ${total.toLocaleString("id-ID")}`;
