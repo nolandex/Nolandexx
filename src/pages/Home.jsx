@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { FaGlobe, FaWhatsapp, FaCommentDots, FaInstagram, FaTiktok, FaFacebook, FaTelegram, FaEnvelope } from "react-icons/fa";
-import PaymentGateway from "../components/PaymentGateway";
 
 // Sample product data (6 products)
 const products = [
@@ -13,16 +12,16 @@ const products = [
 ];
 
 const Home = () => {
-  const [selectedProduct, setSelectedProduct] = useState(null);
   const [showPayment, setShowPayment] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
+
+  const formatRupiah = (amount) => {
+    return 'Rp' + parseInt(amount).toLocaleString('id-ID');
+  };
 
   const handleProductClick = (product) => {
     setSelectedProduct(product);
     setShowPayment(true);
-  };
-
-  const formatRupiah = (amount) => {
-    return 'Rp' + parseInt(amount).toLocaleString('id-ID');
   };
 
   return (
@@ -96,10 +95,75 @@ const Home = () => {
 
         {/* Payment Gateway Modal */}
         {showPayment && selectedProduct && (
-          <PaymentGateway 
-            product={selectedProduct} 
-            onClose={() => setShowPayment(false)} 
-          />
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+            <div className="bg-white rounded-xl shadow-xl w-full max-w-md max-h-[90vh] overflow-y-auto">
+              <div className="bg-blue-600 p-6 text-white">
+                <div className="flex justify-between items-center">
+                  <div>
+                    <h2 className="text-xl font-bold">{selectedProduct.title}</h2>
+                    <p className="text-blue-100 text-sm mt-1">Pembayaran Produk</p>
+                  </div>
+                  <button 
+                    onClick={() => setShowPayment(false)}
+                    className="text-white hover:text-blue-200"
+                  >
+                    <i className="fas fa-times"></i>
+                  </button>
+                </div>
+              </div>
+              
+              <div className="p-6">
+                <div className="flex justify-between items-center mb-6 p-4 bg-gray-50 rounded-lg">
+                  <div>
+                    <h3 className="font-medium">Total Pembayaran</h3>
+                    <p className="text-gray-500 text-sm">Termasuk PPN 11%</p>
+                  </div>
+                  <div className="text-right">
+                    <p className="text-gray-500 line-through text-sm">{formatRupiah(selectedProduct.price * 1.67)}</p>
+                    <p className="text-blue-600 font-bold text-xl">{formatRupiah(selectedProduct.price)}</p>
+                  </div>
+                </div>
+
+                <h3 className="text-lg font-bold mb-4">Metode Pembayaran</h3>
+                
+                <div className="space-y-3 mb-6">
+                  {/* QRIS Method */}
+                  <div className="bg-white rounded-lg p-3 flex items-center cursor-pointer shadow-sm">
+                    <div className="w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center mr-3">
+                      <img 
+                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/QRIS_logo.svg/1200px-QRIS_logo.svg.png" 
+                        alt="QRIS" 
+                        className="h-5"
+                      />
+                    </div>
+                    <div className="flex-grow">
+                      <h3 className="font-medium text-sm">QRIS</h3>
+                    </div>
+                  </div>
+                  
+                  {/* Virtual Account Method */}
+                  <div className="bg-white rounded-lg p-3 flex items-center cursor-pointer shadow-sm">
+                    <div className="w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center mr-3">
+                      <i className="fas fa-university text-blue-600"></i>
+                    </div>
+                    <div className="flex-grow">
+                      <h3 className="font-medium text-sm">Virtual Account</h3>
+                    </div>
+                  </div>
+                  
+                  {/* E-Wallet Method */}
+                  <div className="bg-white rounded-lg p-3 flex items-center cursor-pointer shadow-sm">
+                    <div className="w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center mr-3">
+                      <i className="fas fa-wallet text-green-600"></i>
+                    </div>
+                    <div className="flex-grow">
+                      <h3 className="font-medium text-sm">E-Wallet</h3>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         )}
 
         {/* Contact Section for Button 3 */}
