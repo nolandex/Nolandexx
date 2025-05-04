@@ -2,6 +2,7 @@ import React from "react";
 import "./Cart.css";
 
 const Cart = ({ cart }) => {
+  // Menghitung total harga berdasarkan quantity dan harga produk
   const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
   return (
