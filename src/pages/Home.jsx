@@ -9,16 +9,16 @@ import {
   FaTelegram,
   FaEnvelope,
 } from "react-icons/fa";
-import { Carousel } from "react-responsive-carousel"; // Install react-responsive-carousel
+import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 // Import images
 import product1 from "../assets/images/product1.jpg";
 import product2 from "../assets/images/product2.jpg";
-import product1a from "../assets/images/product1a.jpg"; // Additional images for product 1
+import product1a from "../assets/images/product1a.jpg";
 import product1b from "../assets/images/product1b.jpg";
 import product1c from "../assets/images/product1c.jpg";
-import product2a from "../assets/images/product2a.jpg"; // Additional images for product 2
+import product2a from "../assets/images/product2a.jpg";
 import product2b from "../assets/images/product2b.jpg";
 import product2c from "../assets/images/product2c.jpg";
 
@@ -47,7 +47,7 @@ const Home = () => {
   };
 
   return (
-    <section id="home" className="min-h-screen relative z-10 pt-8 pb-8">
+    <section id="home" className="min-h-screen relative z-10 pt-8 pb-8 overflow-x-hidden">
       <div className="container mx-auto px-4 text-center">
         <h1 className="text-5xl md:text-7xl font-bold mt-10 mb-10">NolanDex</h1>
 
@@ -113,21 +113,21 @@ const Home = () => {
           </div>
 
           {selectedProduct === 1 && (
-            <div className="mt-8">
+            <div className="mt-8 w-full max-w-xs mx-auto">
               <Carousel showThumbs={false} showStatus={false} infiniteLoop>
                 {product1Images.map((img) => (
                   <div key={img.id}>
                     <img
                       src={img.image}
                       alt={`Product 1 - ${img.id}`}
-                      className="w-full max-w-md h-64 object-cover rounded-md"
+                      className="w-full max-w-xs h-48 object-cover rounded-md"
                     />
                   </div>
                 ))}
               </Carousel>
               <a
                 href="https://wa.me/6285156779923?text=Hi%2C%20I%20want%20to%20buy%20Product%201"
-                className="glass flex items-center justify-center gap-2 p-4 mt-4 rounded-lg hover:bg-white/20 transition duration-200 w-full max-w-md mx-auto"
+                className="glass flex items-center justify-center gap-2 p-4 mt-4 rounded-lg hover:bg-white/20 transition duration-200 w-full"
               >
                 <FaWhatsapp />
                 <span>Bayar Sekarang</span>
@@ -136,17 +136,17 @@ const Home = () => {
           )}
 
           {selectedProduct === 2 && (
-            <div className="mt-8 flex flex-col gap-4">
+            <div className="mt-8 w-full max-w-xs mx-auto flex flex-col gap-4">
               {product2Images.map((img) => (
                 <div key={img.id} className="flex flex-col items-center">
                   <img
                     src={img.image}
                     alt={`Product 2 - ${img.id}`}
-                    className="w-full max-w-md h-64 object-cover rounded-md"
+                    className="w-full max-w-xs h-48 object-cover rounded-md"
                   />
                   <a
                     href="https://wa.me/6285156779923?text=Hi%2C%20I%20want%20to%20buy%20Product%202"
-                    className="glass flex items-center justify-center gap-2 p-4 mt-4 rounded-lg hover:bg-white/20 transition duration-200 w-full max-w-md"
+                    className="glass flex items-center justify-center gap-2 p-4 mt-4 rounded-lg hover:bg-white/20 transition duration-200 w-full"
                   >
                     <FaWhatsapp />
                     <span>Bayar Sekarang</span>
@@ -157,10 +157,4 @@ const Home = () => {
           )}
         </div>
 
-        <section id="contact-section" className="mt-20"></section>
-      </div>
-    </section>
-  );
-};
-
-export default Home;
+        <section id
