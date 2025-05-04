@@ -9,11 +9,11 @@ import {
   FaTelegram,
   FaEnvelope,
 } from "react-icons/fa";
-import { products } from "../data/products"; // Sudah diperbaiki: berada dalam folder src
+import { products } from "../data/products"; // Make sure it's in the right folder
 import "./Home.css";
 
-// Lazy load the components
 const ProductSelector = lazy(() => import("../components/ProductSelector/ProductSelector"));
+const Cart = lazy(() => import("../components/Cart/Cart"));
 
 const Home = () => {
   const [cart, setCart] = useState([]);
@@ -36,7 +36,10 @@ const Home = () => {
           }`
       )
       .join("%0A");
-    const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    const total = cart.reduce(
+      (sum, item) => sum + item.price * item.quantity, // Correct calculation for total
+      0
+    );
     return `Hi%2C%20I%20want%20to%20buy:%0A${items}%0ATotal: Rp ${total.toLocaleString("id-ID")}`;
   };
 
