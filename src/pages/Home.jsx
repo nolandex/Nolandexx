@@ -1,102 +1,83 @@
-import React from "react";
-import {
-  FaGlobe,
-  FaWhatsapp,
-  FaCommentDots,
-  FaInstagram,
-  FaTiktok,
-  FaFacebook,
-  FaTelegram,
-  FaEnvelope,
-} from "react-icons/fa";
-
-const products = [
-  { id: 1, title: "Product 1", price: "$29.99", image: "https://via.placeholder.com/150" },
-  { id: 2, title: "Product 2", price: "$39.99", image: "https://via.placeholder.com/150" },
-  { id: 3, title: "Product 3", price: "$19.99", image: "https://via.placeholder.com/150" },
-  { id: 4, title: "Product 4", price: "$49.99", image: "https://via.placeholder.com/150" },
-  { id: 5, title: "Product 5", price: "$24.99", image: "https://via.placeholder.com/150" },
-  { id: 6, title: "Product 6", price: "$34.99", image: "https://via.placeholder.com/150" },
-];
+import React, { useState } from "react";
+// ... import lainnya tetap sama
 
 const Home = () => {
+  const [showPaymentModal, setShowPaymentModal] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
+
+  // Fungsi untuk menangani klik product
+  const handleProductClick = (product) => {
+    setSelectedProduct(product);
+    setShowPaymentModal(true);
+  };
+
+  // Fungsi untuk menutup modal
+  const closePaymentModal = () => {
+    setShowPaymentModal(false);
+  };
+
   return (
     <section id="home" className="min-h-screen relative z-10 pt-8 pb-8">
-      <div className="container mx-auto px-4 text-center">
-        {/* Title */}
-        <h1 className="text-5xl md:text-7xl font-bold mt-10 mb-10">NolanDex</h1>
+      {/* ... kode sebelumnya tetap sama ... */}
 
-        {/* Main CTA Buttons */}
-        <div className="flex flex-col items-center gap-4 max-w-5xl mx-auto mt-8">
-          <a
-            href="https://nolandex.my.id"
-            className="glass flex items-center justify-center gap-2 p-4 rounded-lg hover:bg-white/20 transition duration-200 w-full max-w-md"
-          >
-            <FaGlobe />
-            <span>Pesan di Website</span>
-          </a>
-          <a
-            href="https://wa.me/6285156779923?text=Hi%2C%20I'm%20interested%20in%20your%20business%20setup%20services"
-            className="glass flex items-center justify-center gap-2 p-4 rounded-lg hover:bg-white/20 transition duration-200 w-full max-w-md"
-          >
-            <FaWhatsapp />
-            <span>Pesan di WhatsApp</span>
-          </a>
-          <a
-            href="#contact-section"
-            className="glass flex items-center justify-center gap-2 p-4 rounded-lg hover:bg-white/20 transition duration-200 w-full max-w-md"
-          >
-            <FaCommentDots />
-            <span>Pesan di Sini</span>
-          </a>
-
-          {/* Social Media Icons */}
-          <div className="glass flex items-center justify-center gap-4 p-4 rounded-lg hover:bg-white/20 transition duration-200 w-full max-w-md">
-            <a href="https://www.instagram.com/nolandexco?igsh=MWV3cXRuejBqcGwyZg==" className="text-gray-400 hover:text-white">
-              <FaInstagram size={24} />
-            </a>
-            <a href="https://www.tiktok.com/@nolandexco?_t=ZS-8vwewu0P3sm&_r=1" className="text-gray-400 hover:text-white">
-              <FaTiktok size={24} />
-            </a>
-            <a href="https://www.facebook.com/nolandexco" className="text-gray-400 hover:text-white">
-              <FaFacebook size={24} />
-            </a>
-            <a href="https://t.me/nolandex" className="text-gray-400 hover:text-white">
-              <FaTelegram size={24} />
-            </a>
-            <a href="mailto:nolandexco@gmail.com" className="text-gray-400 hover:text-white">
-              <FaEnvelope size={24} />
-            </a>
-          </div>
+      {/* Product Catalog */}
+      <div className="max-w-lg mx-auto mt-12">
+        <div className="grid grid-cols-2 gap-4">
+          {products.map((product) => (
+            <div
+              key={product.id}
+              onClick={() => handleProductClick(product)}
+              className="glass p-3 rounded-lg hover:bg-white/20 transition duration-200 flex flex-col items-center cursor-pointer"
+            >
+              <img
+                src={product.image}
+                alt={product.title}
+                className="w-16 h-16 object-cover rounded-md mb-2"
+              />
+              <h3 className="text-sm font-semibold text-white">{product.title}</h3>
+              <p className="text-gray-300 text-xs">{product.price}</p>
+            </div>
+          ))}
         </div>
-
-        {/* Product Catalog */}
-        <div className="max-w-lg mx-auto mt-12">
-          <div className="grid grid-cols-2 gap-4">
-            {products.map((product) => (
-              <div
-                key={product.id}
-                className="glass p-3 rounded-lg hover:bg-white/20 transition duration-200 flex flex-col items-center"
-              >
-                <img
-                  src={product.image}
-                  alt={product.title}
-                  className="w-16 h-16 object-cover rounded-md mb-2"
-                />
-                <h3 className="text-sm font-semibold text-white">{product.title}</h3>
-                <p className="text-gray-300 text-xs">{product.price}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Contact Section */}
-        <section id="contact-section" className="mt-20">
-          {/* Placeholder for form or other content */}
-        </section>
       </div>
+
+      {/* Payment Modal */}
+      {showPaymentModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+          <div className="bg-white rounded-xl shadow-xl w-full max-w-md max-h-[90vh] overflow-y-auto">
+            {/* Header */}
+            <div className="bg-blue-600 p-6 text-white">
+              <div className="flex justify-between items-center">
+                <div>
+                  <h2 className="text-xl font-bold">Pembayaran</h2>
+                  <p className="text-blue-100 text-sm mt-1">{selectedProduct?.title}</p>
+                </div>
+                <button onClick={closePaymentModal} className="text-white hover:text-blue-200">
+                  <i className="fas fa-times"></i>
+                </button>
+              </div>
+            </div>
+
+            {/* Body */}
+            <div className="p-6">
+              {/* Order Summary */}
+              <div className="flex justify-between items-center mb-6 p-4 bg-gray-50 rounded-lg">
+                <div>
+                  <h3 className="font-medium">Total Pembayaran</h3>
+                  <p className="text-gray-500 text-sm">Termasuk PPN 11%</p>
+                </div>
+                <div className="text-right">
+                  <p className="text-gray-500 line-through text-sm">Rp {Math.floor(parseInt(selectedProduct?.price.replace('$', '')) * 15000 * 1.67).toLocaleString('id-ID')}</p>
+                  <p className="text-blue-600 font-bold text-xl">Rp {(parseInt(selectedProduct?.price.replace('$', '')) * 15000).toLocaleString('id-ID')}</p>
+                </div>
+              </div>
+
+              {/* Sisanya sama dengan kode payment gateway HTML Anda */}
+              {/* ... */}
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };
-
-export default Home;
