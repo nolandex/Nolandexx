@@ -6,7 +6,7 @@ const Cart = ({ cart, onRemove }) => {
 
   return (
     <div className="cart">
-      <h2>Cart</h2>
+      <h2>Keranjang</h2>
       {cart.map((item, index) => (
         <div className="cart-item" key={index}>
           <div className="cart-item-details">
@@ -17,9 +17,9 @@ const Cart = ({ cart, onRemove }) => {
           <button
             className="cart-item-remove"
             onClick={() => onRemove(index)}
-            aria-label="Remove item"
+            aria-label="Hapus item"
           >
-            Remove
+            Hapus
           </button>
         </div>
       ))}
