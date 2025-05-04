@@ -1,17 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaGlobe, FaWhatsapp, FaCommentDots, FaInstagram, FaTiktok, FaFacebook, FaTelegram, FaEnvelope } from "react-icons/fa";
+import PaymentGateway from "../components/PaymentGateway";
 
 // Sample product data (6 products)
 const products = [
-  { id: 1, title: "Product 1", price: "$29.99", image: "https://via.placeholder.com/150" },
-  { id: 2, title: "Product 2", price: "$39.99", image: "https://via.placeholder.com/150" },
-  { id: 3, title: "Product 3", price: "$19.99", image: "https://via.placeholder.com/150" },
-  { id: 4, title: "Product 4", price: "$49.99", image: "https://via.placeholder.com/150" },
-  { id: 5, title: "Product 5", price: "$24.99", image: "https://via.placeholder.com/150" },
-  { id: 6, title: "Product 6", price: "$34.99", image: "https://via.placeholder.com/150" },
+  { id: 1, title: "Product 1", price: 299000, image: "https://via.placeholder.com/150" },
+  { id: 2, title: "Product 2", price: 399000, image: "https://via.placeholder.com/150" },
+  { id: 3, title: "Product 3", price: 199000, image: "https://via.placeholder.com/150" },
+  { id: 4, title: "Product 4", price: 499000, image: "https://via.placeholder.com/150" },
+  { id: 5, title: "Product 5", price: 249000, image: "https://via.placeholder.com/150" },
+  { id: 6, title: "Product 6", price: 349000, image: "https://via.placeholder.com/150" },
 ];
 
 const Home = () => {
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [showPayment, setShowPayment] = useState(false);
+
+  const handleProductClick = (product) => {
+    setSelectedProduct(product);
+    setShowPayment(true);
+  };
+
+  const formatRupiah = (amount) => {
+    return 'Rp' + parseInt(amount).toLocaleString('id-ID');
+  };
+
   return (
     <section id="home" className="min-h-screen relative z-10 pt-8 pb-8">
       <div className="container mx-auto px-4 text-center">
@@ -41,9 +54,7 @@ const Home = () => {
             <FaCommentDots />
             <span>Pesan di Sini</span>
           </a>
-          <div
-            className="glass flex items-center justify-center gap-4 p-4 rounded-lg hover:bg-white/20 transition-all duration-200 w-full max-w-md"
-          >
+          <div className="glass flex items-center justify-center gap-4 p-4 rounded-lg hover:bg-white/20 transition-all duration-200 w-full max-w-md">
             <a href="https://www.instagram.com/nolandexco?igsh=MWV3cXRuejBqcGwyZg==" className="text-gray-400 hover:text-white transition-all duration-200">
               <FaInstagram size={24} />
             </a>
@@ -68,7 +79,8 @@ const Home = () => {
             {products.map((product) => (
               <div
                 key={product.id}
-                className="glass p-2 rounded-lg hover:bg-white/20 transition-all duration-200 flex flex-col items-center"
+                className="glass p-2 rounded-lg hover:bg-white/20 transition-all duration-200 flex flex-col items-center cursor-pointer"
+                onClick={() => handleProductClick(product)}
               >
                 <img
                   src={product.image}
@@ -76,11 +88,19 @@ const Home = () => {
                   className="w-16 h-16 object-cover rounded-md mb-2"
                 />
                 <h3 className="text-xs font-medium text-white">{product.title}</h3>
-                <p className="text-gray-300 text-[10px]">{product.price}</p>
+                <p className="text-gray-300 text-[10px]">{formatRupiah(product.price)}</p>
               </div>
             ))}
           </div>
         </div>
+
+        {/* Payment Gateway Modal */}
+        {showPayment && selectedProduct && (
+          <PaymentGateway 
+            product={selectedProduct} 
+            onClose={() => setShowPayment(false)} 
+          />
+        )}
 
         {/* Contact Section for Button 3 */}
         <section id="contact-section" className="mt-20">
