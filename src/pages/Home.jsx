@@ -12,7 +12,6 @@ import {
 import { products } from "../data/products";
 import "./Home.css";
 
-// Lazy load komponen
 const ProductSelector = lazy(() => import("../components/ProductSelector/ProductSelector"));
 const Cart = lazy(() => import("../components/Cart/Cart"));
 
@@ -65,26 +64,17 @@ const Home = () => {
       <div className="container mx-auto px-4 text-center">
         <h1 className="text-5xl md:text-7xl font-bold mt-10 mb-10">NolanDex</h1>
 
-        {/* Link Button */}
+        {/* Top Buttons */}
         <div className="flex flex-col items-center gap-4 max-w-5xl mx-auto mt-8">
-          <a
-            href="https://nolandex.my.id"
-            className="glass flex items-center justify-center gap-2 p-4 rounded-lg hover:bg-white/20 transition duration-200 w-full max-w-md"
-          >
+          <a href="https://nolandex.my.id" className="glass button-style">
             <FaGlobe />
             <span>Pesan di Website</span>
           </a>
-          <a
-            href="https://wa.me/6285156779923?text=Hi%2C%20I'm%20interested%20in%20your%20business%20setup%20services"
-            className="glass flex items-center justify-center gap-2 p-4 rounded-lg hover:bg-white/20 transition duration-200 w-full max-w-md"
-          >
+          <a href="https://wa.me/6285156779923?text=Hi%2C%20I'm%20interested%20in%20your%20business%20setup%20services" className="glass button-style">
             <FaWhatsapp />
             <span>Pesan di WhatsApp</span>
           </a>
-          <a
-            href="#contact-section"
-            className="glass flex items-center justify-center gap-2 p-4 rounded-lg hover:bg-white/20 transition duration-200 w-full max-w-md"
-          >
+          <a href="#contact-section" className="glass button-style">
             <FaCommentDots />
             <span>Pesan di Sini</span>
           </a>
@@ -111,21 +101,21 @@ const Home = () => {
 
         {/* Product Selector */}
         <div className="max-w-lg mx-auto mt-12">
-          <Suspense fallback={<div>Loading products...</div>}>
+          <Suspense fallback={<div>Loading...</div>}>
             <ProductSelector onAddToCart={addToCart} products={products} />
           </Suspense>
         </div>
 
         {/* Cart Section */}
         {cart.length > 0 && (
-          <div className="mt-10 max-w-md mx-auto">
-            <Suspense fallback={<div>Loading cart...</div>}>
-              <Cart cart={cart} />
+          <div className="mt-8 max-w-lg mx-auto">
+            <Suspense fallback={<div>Loading...</div>}>
+              <Cart cart={cart} onRemove={removeFromCart} />
             </Suspense>
 
             <button
               onClick={handleCheckout}
-              className="glass flex items-center justify-center gap-2 p-4 rounded-lg hover:bg-white/20 transition duration-200 w-full mt-4"
+              className="glass button-style mt-4"
               aria-label="Checkout via WhatsApp"
             >
               <FaWhatsapp />
