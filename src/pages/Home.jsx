@@ -9,11 +9,11 @@ import {
   FaTelegram,
   FaEnvelope,
 } from "react-icons/fa";
-import { products } from "../../data/products"; // Impor dari src/data/products.js
+import products from "../data/products"; // Sudah diperbaiki: default import dan path benar
 import "./Home.css";
 
-const ProductSelector = lazy(() => import("../../components/ProductSelector/ProductSelector"));
-const Cart = lazy(() => import("../../components/Cart/Cart"));
+const ProductSelector = lazy(() => import("../components/ProductSelector/ProductSelector"));
+const Cart = lazy(() => import("../components/Cart/Cart"));
 
 const Home = () => {
   const [cart, setCart] = useState([]);
