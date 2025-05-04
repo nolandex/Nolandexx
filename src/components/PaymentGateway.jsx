@@ -1,238 +1,357 @@
-// Global variables
-let selectedPlan = {
-  name: "Layanan Premium",
-  amount: "299000",
-  product: "Layanan Premium 1 Bulan"
-};
-let selectedMethod = null;
+import React, { useState } from "react";
+import { FaGlobe, FaWhatsapp, FaCommentDots, FaInstagram, FaTiktok, FaFacebook, FaTelegram, FaEnvelope, FaTimes, FaUniversity, FaWallet, FaStore, FaChevronDown, FaCheckCircle, FaArrowRight, FaLock, FaCopy, FaInfoCircle, FaExclamationCircle } from "react-icons/fa";
 
-// Product data
 const products = [
-  { id: 1, name: "Product 1", amount: "299000", product: "Product 1" },
-  { id: 2, name: "Product 2", amount: "399000", product: "Product 2" },
-  { id: 3, name: "Product 3", amount: "199000", product: "Product 3" },
-  { id: 4, name: "Product 4", amount: "499000", product: "Product 4" },
-  { id: 5, name: "Product 5", amount: "249000", product: "Product 5" },
-  { id: 6, name: "Product 6", amount: "349000", product: "Product 6" }
+  { id: 1, title: "Product 1", price: 299000, description: "Premium Product 1" },
+  { id: 2, title: "Product 2", price: 399000, description: "Premium Product 2" },
+  { id: 3, title: "Product 3", price: 199000, description: "Basic Product 1" },
+  { id: 4, title: "Product 4", price: 499000, description: "Premium Product 3" },
+  { id: 5, title: "Product 5", price: 249000, description: "Basic Product 2" },
+  { id: 6, title: "Product 6", price: 349000, description: "Standard Product" }
 ];
 
-// Format Rupiah helper function
-function formatRupiah(amount) {
-  return 'Rp' + parseInt(amount).toLocaleString('id-ID');
-}
+const Home = () => {
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [showPayment, setShowPayment] = useState(false);
+  const [activeMethod, setActiveMethod] = useState(null);
+  const [processing, setProcessing] = useState(false);
+  const [success, setSuccess] = useState(false);
 
-// Open Payment Modal for specific product
-function openPaymentModal(productId) {
-  const product = products.find(p => p.id === productId);
-  if (!product) return;
-
-  selectedPlan = product;
-  
-  document.getElementById('modalPlan').textContent = product.name;
-  document.getElementById('modalProduct').textContent = product.product;
-  document.getElementById('modalAmount').textContent = formatRupiah(product.amount);
-  document.getElementById('modalOldPrice').textContent = formatRupiah(product.amount * 1.67);
-  
-  // Close all open payment details
-  document.querySelectorAll('.payment-details').forEach(detail => {
-    detail.classList.remove('active');
-  });
-  
-  // Reset all chevron icons
-  document.querySelectorAll('.payment-method i.fa-chevron-down').forEach(icon => {
-    icon.classList.remove('rotate-180');
-  });
-  
-  document.getElementById('paymentModal').classList.remove('hidden');
-  document.body.style.overflow = 'hidden';
-}
-
-// Payment Method Selection
-document.querySelectorAll('.payment-method').forEach(method => {
-  method.addEventListener('click', function() {
-    const container = this.closest('.payment-method-container');
-    const details = container.querySelector('.payment-details');
-    const chevron = this.querySelector('i.fa-chevron-down');
-    
-    // Close all other payment details
-    document.querySelectorAll('.payment-details').forEach(d => {
-      if (d !== details) {
-        d.classList.remove('active');
-      }
-    });
-    
-    // Reset all other chevron icons
-    document.querySelectorAll('.payment-method i.fa-chevron-down').forEach(icon => {
-      if (icon !== chevron) {
-        icon.classList.remove('rotate-180');
-      }
-    });
-    
-    // Toggle current payment details
-    details.classList.toggle('active');
-    chevron.classList.toggle('rotate-180');
-    
-    // Set selected method
-    selectedMethod = this.getAttribute('data-method');
-  });
-});
-
-// Bank Option Selection for Virtual Account
-document.addEventListener('click', function(e) {
-  if (e.target.closest('.bank-option')) {
-    const option = e.target.closest('.bank-option');
-    const container = option.closest('.payment-details');
-    const vaNumber = container.querySelector('.va-number');
-    const copyBtn = container.querySelector('.copy-btn');
-    
-    // Remove selection from all options in this container
-    container.querySelectorAll('.bank-option').forEach(opt => {
-      opt.classList.remove('bg-blue-100');
-    });
-    
-    // Add selection to clicked option
-    option.classList.add('bg-blue-100');
-    
-    // Update VA number based on bank
-    const bank = option.getAttribute('data-bank');
-    const vaNumbers = {
-      'bca': '8888801234567890',
-      'mandiri': '8888802345678901',
-      'bni': '8888803456789012'
-    };
-    
-    if (vaNumbers[bank]) {
-      vaNumber.textContent = vaNumbers[bank];
-      copyBtn.setAttribute('onclick', `copyToClipboard('${vaNumbers[bank]}', 'Nomor VA')`);
-    }
-  }
-  
-  // E-Wallet Option Selection
-  if (e.target.closest('.payment-option')) {
-    const option = e.target.closest('.payment-option');
-    const container = option.closest('.payment-details');
-    
-    // Check if this is in e-wallet section
-    if (container.querySelector('.ewallet-number')) {
-      const ewalletNumber = container.querySelector('.ewallet-number');
-      const copyBtn = container.querySelector('.copy-btn');
-      
-      // Remove selection from all options in this container
-      container.querySelectorAll('.payment-option').forEach(opt => {
-        opt.classList.remove('bg-blue-100');
-      });
-      
-      // Add selection to clicked option
-      option.classList.add('bg-blue-100');
-      
-      // Update e-wallet number based on selection
-      const wallet = option.getAttribute('data-wallet');
-      const numbers = {
-        'dana': '081234567890',
-        'gopay': '081987654321',
-        'ovo': '082345678901'
-      };
-      
-      if (numbers[wallet]) {
-        ewalletNumber.textContent = numbers[wallet];
-        copyBtn.setAttribute('onclick', `copyToClipboard('${numbers[wallet]}', 'Nomor e-wallet')`);
-      }
-    }
-    
-    // Check if this is in retail section
-    if (container.querySelector('.retail-code')) {
-      const retailCode = container.querySelector('.retail-code');
-      const copyBtn = container.querySelector('.copy-btn');
-      
-      // Remove selection from all options in this container
-      container.querySelectorAll('.payment-option').forEach(opt => {
-        opt.classList.remove('bg-blue-100');
-      });
-      
-      // Add selection to clicked option
-      option.classList.add('bg-blue-100');
-      
-      // Update retail code based on selection
-      const retail = option.getAttribute('data-retail');
-      const codes = {
-        'alfamart': 'ALFA' + Math.floor(100000 + Math.random() * 900000),
-        'indomaret': 'INDO' + Math.floor(100000 + Math.random() * 900000)
-      };
-      
-      if (codes[retail]) {
-        retailCode.textContent = codes[retail];
-        copyBtn.setAttribute('onclick', `copyToClipboard('${codes[retail]}', 'Kode pembayaran')`);
-      }
-    }
-  }
-});
-
-// Confirm Payment Button
-document.addEventListener('click', function(e) {
-  if (e.target.closest('.confirm-payment')) {
-    processPayment();
-  }
-});
-
-// Process Payment
-function processPayment() {
-  document.getElementById('paymentModal').classList.add('hidden');
-  document.getElementById('processingModal').classList.remove('hidden');
-  
-  setTimeout(() => {
-    document.getElementById('loadingBar').style.width = '100%';
-  }, 100);
-  
-  setTimeout(() => {
-    document.getElementById('processingModal').classList.add('hidden');
-    
-    document.getElementById('successAmount').textContent = formatRupiah(selectedPlan.amount);
-    document.getElementById('successMethod').textContent = getMethodName(selectedMethod);
-    document.getElementById('invoiceNumber').textContent = 'INV-' + Math.floor(1000 + Math.random() * 9000);
-    
-    document.getElementById('successModal').classList.remove('hidden');
-  }, 1500);
-}
-
-// Close Modals
-document.getElementById('closeModal').addEventListener('click', () => {
-  document.getElementById('paymentModal').classList.add('hidden');
-  document.body.style.overflow = 'auto';
-});
-
-document.getElementById('closeSuccessModal').addEventListener('click', () => {
-  document.getElementById('successModal').classList.add('hidden');
-  document.body.style.overflow = 'auto';
-});
-
-// Get Method Name
-function getMethodName(method) {
-  const methods = {
-    'qris': 'QRIS',
-    'virtual_account': 'Virtual Account',
-    'bank_transfer': 'Transfer Bank',
-    'ewallet': 'E-Wallet',
-    'retail': 'Retail',
-    'credit_card': 'Kartu Kredit'
+  const formatRupiah = (amount) => {
+    return 'Rp' + parseInt(amount).toLocaleString('id-ID');
   };
-  return methods[method] || 'Pembayaran';
-}
 
-// Copy to Clipboard Function
-function copyToClipboard(text, label) {
-  navigator.clipboard.writeText(text).then(() => {
-    showToast(`${label} disalin!`);
-  }).catch(err => {
-    console.error('Gagal menyalin: ', err);
-  });
-}
+  const handleProductClick = (product) => {
+    setSelectedProduct(product);
+    setShowPayment(true);
+  };
 
-// Show Toast Notification
-function showToast(message) {
-  const toast = document.getElementById('toast');
-  toast.innerHTML = `<i class="fas fa-copy mr-2"></i> ${message}`;
-  toast.style.display = 'flex';
-  setTimeout(() => {
-    toast.style.display = 'none';
-  }, 2000);
-}
+  const processPayment = () => {
+    setProcessing(true);
+    setTimeout(() => {
+      setProcessing(false);
+      setSuccess(true);
+    }, 1500);
+  };
+
+  return (
+    <section id="home" className="min-h-screen relative z-10 pt-8 pb-8">
+      {/* Your existing header and buttons */}
+
+      {/* Product Grid */}
+      <div className="max-w-lg mx-auto mt-8">
+        <div className="grid grid-cols-2 gap-3">
+          {products.map((product) => (
+            <div
+              key={product.id}
+              className="glass p-2 rounded-lg hover:bg-white/20 transition-all duration-200 flex flex-col items-center cursor-pointer"
+              onClick={() => handleProductClick(product)}
+            >
+              <img
+                src={`https://via.placeholder.com/150?text=Product+${product.id}`}
+                alt={product.title}
+                className="w-16 h-16 object-cover rounded-md mb-2"
+              />
+              <h3 className="text-xs font-medium text-white">{product.title}</h3>
+              <p className="text-gray-300 text-[10px]">{formatRupiah(product.price)}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Payment Gateway Modal */}
+      {showPayment && selectedProduct && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+          <div className="bg-white rounded-xl shadow-xl w-full max-w-md max-h-[90vh] overflow-y-auto">
+            <div className="bg-blue-600 p-6 text-white">
+              <div className="flex justify-between items-center">
+                <div>
+                  <h2 className="text-xl font-bold">{selectedProduct.title}</h2>
+                  <p className="text-blue-100 text-sm mt-1">{selectedProduct.description}</p>
+                </div>
+                <button 
+                  onClick={() => setShowPayment(false)}
+                  className="text-white hover:text-blue-200"
+                >
+                  <FaTimes />
+                </button>
+              </div>
+            </div>
+            
+            <div className="p-6">
+              <div className="flex justify-between items-center mb-6 p-4 bg-gray-50 rounded-lg">
+                <div>
+                  <h3 className="font-medium">Total Pembayaran</h3>
+                  <p className="text-gray-500 text-sm">Termasuk PPN 11%</p>
+                </div>
+                <div className="text-right">
+                  <p className="text-gray-500 line-through text-sm">{formatRupiah(selectedProduct.price * 1.67)}</p>
+                  <p className="text-blue-600 font-bold text-xl">{formatRupiah(selectedProduct.price)}</p>
+                </div>
+              </div>
+
+              <h3 className="text-lg font-bold mb-4">Metode Pembayaran</h3>
+              
+              <div className="space-y-3 mb-6">
+                {/* QRIS */}
+                <div className="payment-method-container">
+                  <div 
+                    className="payment-method bg-white rounded-lg p-3 flex items-center cursor-pointer shadow-sm"
+                    onClick={() => setActiveMethod(activeMethod === 'qris' ? null : 'qris')}
+                  >
+                    <div className="w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center mr-3">
+                      <img 
+                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/QRIS_logo.svg/1200px-QRIS_logo.svg.png" 
+                        alt="QRIS" 
+                        className="h-5"
+                      />
+                    </div>
+                    <div className="flex-grow">
+                      <h3 className="font-medium text-sm">QRIS</h3>
+                    </div>
+                    <FaChevronDown className={`text-gray-400 transform transition-transform duration-300 ${activeMethod === 'qris' ? 'rotate-180' : ''}`} />
+                  </div>
+                  
+                  {activeMethod === 'qris' && (
+                    <div className="payment-details-content">
+                      <div className="text-center mb-4">
+                        <div className="qr-code mx-auto w-48 h-48 border-2 border-dashed border-gray-300 rounded-lg mb-3"></div>
+                        <p className="text-sm text-gray-500">Scan QR code menggunakan aplikasi mobile banking atau e-wallet</p>
+                      </div>
+                      
+                      <div className="bg-blue-50 p-3 rounded-lg text-sm text-blue-800 mb-4">
+                        <p><FaInfoCircle className="inline mr-2" /> QR code akan kadaluarsa dalam 24 jam</p>
+                      </div>
+                      
+                      <button 
+                        className="confirm-payment w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-bold"
+                        onClick={processPayment}
+                      >
+                        <FaCheckCircle className="inline mr-2" /> Saya Sudah Bayar
+                      </button>
+                    </div>
+                  )}
+                </div>
+                
+                {/* Virtual Account */}
+                <div className="payment-method-container">
+                  <div 
+                    className="payment-method bg-white rounded-lg p-3 flex items-center cursor-pointer shadow-sm"
+                    onClick={() => setActiveMethod(activeMethod === 'va' ? null : 'va')}
+                  >
+                    <div className="w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center mr-3">
+                      <FaUniversity className="text-blue-600" />
+                    </div>
+                    <div className="flex-grow">
+                      <h3 className="font-medium text-sm">Virtual Account</h3>
+                    </div>
+                    <FaChevronDown className={`text-gray-400 transform transition-transform duration-300 ${activeMethod === 'va' ? 'rotate-180' : ''}`} />
+                  </div>
+                  
+                  {activeMethod === 'va' && (
+                    <div className="payment-details-content">
+                      <h4 className="font-medium mb-3 text-center">Pilih Bank</h4>
+                      <div className="grid grid-cols-3 gap-2 mb-4">
+                        {/* BCA */}
+                        <div className="method-item p-2 rounded-lg cursor-pointer text-center bg-gray-100 hover:bg-gray-200">
+                          <img 
+                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Bank_Central_Asia.svg/2560px-Bank_Central_Asia.svg.png" 
+                            alt="BCA" 
+                            className="h-6 mx-auto mb-1"
+                          />
+                        </div>
+                        
+                        {/* Mandiri */}
+                        <div className="method-item p-2 rounded-lg cursor-pointer text-center bg-gray-100 hover:bg-gray-200">
+                          <img 
+                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Bank_Mandiri_logo_2016.svg/1200px-Bank_Mandiri_logo_2016.svg.png" 
+                            alt="Mandiri" 
+                            className="h-6 mx-auto mb-1"
+                          />
+                        </div>
+                        
+                        {/* BNI */}
+                        <div className="method-item p-2 rounded-lg cursor-pointer text-center bg-gray-100 hover:bg-gray-200">
+                          <img 
+                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/BNI_logo.svg/1200px-BNI_logo.svg.png" 
+                            alt="BNI" 
+                            className="h-6 mx-auto mb-1"
+                          />
+                        </div>
+                      </div>
+                      
+                      <div className="bg-gray-50 p-4 rounded-lg mb-4">
+                        <div className="mb-3">
+                          <label className="block text-gray-500 text-sm mb-1">Nomor Virtual Account</label>
+                          <div className="flex items-center">
+                            <span className="font-mono bg-gray-100 p-2 rounded flex-1">8888801234567890</span>
+                            <button 
+                              className="text-blue-600 hover:text-blue-800 ml-2"
+                              onClick={() => navigator.clipboard.writeText('8888801234567890').then(() => alert('Nomor VA disalin!'))}
+                            >
+                              <FaCopy />
+                            </button>
+                          </div>
+                        </div>
+                        <div>
+                          <label className="block text-gray-500 text-sm mb-1">Jumlah Transfer</label>
+                          <span className="font-bold text-blue-600">{formatRupiah(selectedProduct.price)}</span>
+                        </div>
+                      </div>
+                      
+                      <div className="bg-yellow-50 p-3 rounded-lg text-sm text-yellow-800 mb-4">
+                        <p><FaExclamationCircle className="inline mr-2" /> Transfer tepat sesuai nominal untuk proses otomatis</p>
+                      </div>
+                      
+                      <button 
+                        className="confirm-payment w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-bold"
+                        onClick={processPayment}
+                      >
+                        <FaCheckCircle className="inline mr-2" /> Konfirmasi Pembayaran
+                      </button>
+                    </div>
+                  )}
+                </div>
+                
+                {/* E-Wallet */}
+                <div className="payment-method-container">
+                  <div 
+                    className="payment-method bg-white rounded-lg p-3 flex items-center cursor-pointer shadow-sm"
+                    onClick={() => setActiveMethod(activeMethod === 'ewallet' ? null : 'ewallet')}
+                  >
+                    <div className="w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center mr-3">
+                      <FaWallet className="text-green-600" />
+                    </div>
+                    <div className="flex-grow">
+                      <h3 className="font-medium text-sm">E-Wallet</h3>
+                    </div>
+                    <FaChevronDown className={`text-gray-400 transform transition-transform duration-300 ${activeMethod === 'ewallet' ? 'rotate-180' : ''}`} />
+                  </div>
+                  
+                  {activeMethod === 'ewallet' && (
+                    <div className="payment-details-content">
+                      <h4 className="font-medium mb-3 text-center">Pilih E-Wallet</h4>
+                      <div className="grid grid-cols-3 gap-2 mb-4">
+                        {/* DANA */}
+                        <div className="method-item p-2 rounded-lg cursor-pointer text-center bg-gray-100 hover:bg-gray-200">
+                          <img 
+                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Logo_dana_blue.svg/1200px-Logo_dana_blue.svg.png" 
+                            alt="DANA" 
+                            className="h-6 mx-auto mb-1"
+                          />
+                        </div>
+                        
+                        {/* GoPay */}
+                        <div className="method-item p-2 rounded-lg cursor-pointer text-center bg-gray-100 hover:bg-gray-200">
+                          <img 
+                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Gopay_logo.svg/1200px-Gopay_logo.svg.png" 
+                            alt="GoPay" 
+                            className="h-6 mx-auto mb-1"
+                          />
+                        </div>
+                        
+                        {/* OVO */}
+                        <div className="method-item p-2 rounded-lg cursor-pointer text-center bg-gray-100 hover:bg-gray-200">
+                          <img 
+                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/OVO_logo.svg/1200px-OVO_logo.svg.png" 
+                            alt="OVO" 
+                            className="h-6 mx-auto mb-1"
+                          />
+                        </div>
+                      </div>
+                      
+                      <div className="bg-gray-50 p-4 rounded-lg mb-4">
+                        <div className="mb-3">
+                          <label className="block text-gray-500 text-sm mb-1">Nomor E-Wallet</label>
+                          <div className="flex items-center">
+                            <span className="font-mono bg-gray-100 p-2 rounded flex-1">081234567890</span>
+                            <button 
+                              className="text-blue-600 hover:text-blue-800 ml-2"
+                              onClick={() => navigator.clipboard.writeText('081234567890').then(() => alert('Nomor e-wallet disalin!'))}
+                            >
+                              <FaCopy />
+                            </button>
+                          </div>
+                        </div>
+                        <div>
+                          <label className="block text-gray-500 text-sm mb-1">Jumlah Transfer</label>
+                          <span className="font-bold text-blue-600">{formatRupiah(selectedProduct.price)}</span>
+                        </div>
+                      </div>
+                      
+                      <div className="bg-blue-50 p-3 rounded-lg text-sm text-blue-800 mb-4">
+                        <p><FaInfoCircle className="inline mr-2" /> Anda akan diarahkan ke aplikasi untuk menyelesaikan pembayaran</p>
+                      </div>
+                      
+                      <button 
+                        className="confirm-payment w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-bold"
+                        onClick={processPayment}
+                      >
+                        <FaArrowRight className="inline mr-2" /> Lanjut ke Pembayaran
+                      </button>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Processing Modal */}
+      {processing && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+          <div className="bg-white rounded-xl max-w-md w-full p-6 text-center">
+            <div className="mb-4">
+              <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
+                <div className="loading-bar h-full bg-blue-500" style={{ width: '100%' }}></div>
+              </div>
+            </div>
+            <h3 className="text-lg font-bold mb-2">Memproses Pembayaran</h3>
+            <p className="text-gray-600">Harap tunggu sebentar...</p>
+          </div>
+        </div>
+      )}
+
+      {/* Success Modal */}
+      {success && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+          <div className="bg-white rounded-xl max-w-md w-full p-6 text-center">
+            <div className="text-green-500 mb-4">
+              <FaCheckCircle className="text-5xl inline" />
+            </div>
+            <h2 className="text-2xl font-bold mb-2">Pembayaran Berhasil!</h2>
+            <p className="text-gray-600 mb-4">Terima kasih telah melakukan pembayaran.</p>
+            
+            <div className="bg-gray-50 p-4 rounded-lg mb-4 text-left">
+              <div className="flex justify-between mb-2">
+                <span className="text-gray-500">Invoice</span>
+                <span className="font-mono">INV-{Math.floor(1000 + Math.random() * 9000)}</span>
+              </div>
+              <div className="flex justify-between mb-2">
+                <span className="text-gray-500">Produk</span>
+                <span className="font-medium">{selectedProduct.title}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-gray-500">Total</span>
+                <span className="font-bold text-blue-600">{formatRupiah(selectedProduct.price)}</span>
+              </div>
+            </div>
+            
+            <button 
+              onClick={() => {
+                setSuccess(false);
+                setShowPayment(false);
+              }}
+              className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-bold"
+            >
+              Selesai
+            </button>
+          </div>
+        </div>
+      )}
+    </section>
+  );
+};
+
+export default Home;
