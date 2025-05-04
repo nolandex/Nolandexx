@@ -9,7 +9,7 @@ import {
   FaTelegram,
   FaEnvelope,
 } from "react-icons/fa";
-import { products } from "../../data/products"; // Impor produk
+import { products } from "../../data/products"; // Correct import path
 import "./Home.css";
 
 const ProductSelector = lazy(() => import("../../components/ProductSelector/ProductSelector"));
