@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./ProductSelector.css";
 
-const ProductSelector = ({ onAddToCart, products }) => {
+const ProductSelector = ({ onAddToCart, products, cartCount }) => {
   const [selectedProduct, setSelectedProduct] = useState("");
   const [selectedVariant, setSelectedVariant] = useState("");
   const [quantity, setQuantity] = useState(1);
@@ -24,7 +24,11 @@ const ProductSelector = ({ onAddToCart, products }) => {
 
   return (
     <div className="product-selector">
-      <label htmlFor="product">Product</label>
+      <button className="glass uniform-btn w-full mb-4 cursor-default">
+        Pilih Produk ({cartCount} dipilih)
+      </button>
+
+      <label htmlFor="product">Produk</label>
       <select
         id="product"
         value={selectedProduct}
@@ -33,7 +37,7 @@ const ProductSelector = ({ onAddToCart, products }) => {
           setSelectedVariant("");
         }}
       >
-        <option value="">Select a product</option>
+        <option value="">Pilih produk</option>
         {products.map((p) => (
           <option key={p.name} value={p.name}>
             {p.name}
@@ -43,16 +47,14 @@ const ProductSelector = ({ onAddToCart, products }) => {
 
       {selectedProduct && (
         <>
-          <label htmlFor="variant">Variant</label>
+          <label htmlFor="variant">Varian</label>
           <select
             id="variant"
             value={selectedVariant}
             onChange={(e) => setSelectedVariant(e.target.value)}
           >
-            <option value="">Select a variant</option>
-            {Object.keys(
-              products.find((p) => p.name === selectedProduct).variants
-            ).map((v) => (
+            <option value="">Pilih varian</option>
+            {Object.keys(products.find((p) => p.name === selectedProduct).variants).map((v) => (
               <option key={v} value={v}>
                 {v}
               </option>
@@ -63,7 +65,7 @@ const ProductSelector = ({ onAddToCart, products }) => {
 
       {selectedVariant && (
         <>
-          <label htmlFor="quantity">Quantity</label>
+          <label htmlFor="quantity">Jumlah</label>
           <input
             id="quantity"
             type="number"
@@ -74,7 +76,7 @@ const ProductSelector = ({ onAddToCart, products }) => {
         </>
       )}
 
-      <button onClick={handleAdd}>Add to Cart</button>
+      <button onClick={handleAdd}>Tambah ke Keranjang</button>
     </div>
   );
 };
