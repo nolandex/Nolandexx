@@ -12,15 +12,12 @@ import {
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
-// Import images
+// Import images for Product 1
 import product1 from "../assets/images/product1.jpg";
 import product2 from "../assets/images/product2.jpg";
 import product1a from "../assets/images/product1a.jpg";
 import product1b from "../assets/images/product1b.jpg";
 import product1c from "../assets/images/product1c.jpg";
-import product2a from "../assets/images/product2a.jpg";
-import product2b from "../assets/images/product2b.jpg";
-import product2c from "../assets/images/product2c.jpg";
 
 const products = [
   { id: 1, title: "Product 1", price: "$29.99", image: product1 },
@@ -33,10 +30,11 @@ const product1Images = [
   { id: 3, image: product1c },
 ];
 
-const product2Images = [
-  { id: 1, image: product2a },
-  { id: 2, image: product2b },
-  { id: 3, image: product2c },
+// Websites to embed under Product 2
+const product2Websites = [
+  { id: 1, url: "https://www.nolandex.my.id/", title: "NolanDex Website" },
+  { id: 2, url: "https://github.com/nolandex/Nolancoz/tree/main", title: "GitHub Repository" },
+  { id: 3, url: "https://nolandexco.vercel.app/", title: "NolanDex Vercel App" },
 ];
 
 const Home = () => {
@@ -137,13 +135,24 @@ const Home = () => {
 
           {selectedProduct === 2 && (
             <div className="mt-8 w-full max-w-xs mx-auto flex flex-col gap-4">
-              {product2Images.map((img) => (
-                <div key={img.id} className="flex flex-col items-center">
-                  <img
-                    src={img.image}
-                    alt={`Product 2 - ${img.id}`}
-                    className="w-full max-w-xs h-48 object-cover rounded-md"
+              {product2Websites.map((website) => (
+                <div key={website.id} className="flex flex-col items-center">
+                  <iframe
+                    src={website.url}
+                    title={website.title}
+                    className="w-full max-w-xs h-48 rounded-md border-0"
+                    allowFullScreen
+                    loading="lazy"
                   />
+                  {/* Fallback link if iframe fails to load (uncomment if needed) */}
+                  {/* <a
+                    href={website.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-400 underline mt-2"
+                  >
+                    Open {website.title} in new tab
+                  </a> */}
                   <a
                     href="https://wa.me/6285156779923?text=Hi%2C%20I%20want%20to%20buy%20Product%202"
                     className="glass flex items-center justify-center gap-2 p-4 mt-4 rounded-lg hover:bg-white/20 transition duration-200 w-full"
