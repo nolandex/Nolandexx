@@ -9,7 +9,7 @@ import {
   FaTelegram,
   FaEnvelope,
 } from "react-icons/fa";
-import { products } from "../data/products"; // Pastikan path-nya benar
+import { products } from "../data/products"; // Make sure it's in the right folder
 import "./Home.css";
 
 const ProductSelector = lazy(() => import("../components/ProductSelector/ProductSelector"));
@@ -25,12 +25,12 @@ const Home = () => {
     );
 
     if (existingItemIndex !== -1) {
-      // Jika item sudah ada di keranjang, update quantity
+      // If the item is already in the cart, update the quantity
       const updatedCart = [...cart];
       updatedCart[existingItemIndex].quantity += item.quantity;
       setCart(updatedCart);
     } else {
-      // Jika item belum ada di keranjang, tambah item baru
+      // If the item is not in the cart, add it
       setCart([...cart, item]);
     }
   };
@@ -50,7 +50,7 @@ const Home = () => {
       )
       .join("%0A");
     const total = cart.reduce(
-      (sum, item) => sum + item.price * item.quantity, // Kalkulasi total dengan benar
+      (sum, item) => sum + item.price * item.quantity, // Correct calculation for total
       0
     );
     return `Hi%2C%20I%20want%20to%20buy:%0A${items}%0ATotal: Rp ${total.toLocaleString("id-ID")}`;
