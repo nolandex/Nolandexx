@@ -1,92 +1,68 @@
-// src/components/ProductSelector/ProductSelector.js
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { products } from "../../data/products"; // Make sure it's the correct path
 import "./ProductSelector.css";
 
-const ProductSelector = ({ onAddToCart, products = [], cartCount = 0 }) => {
-  const [selectedProduct, setSelectedProduct] = useState("");
-  const [selectedVariant, setSelectedVariant] = useState("");
+const ProductSelector = ({ onAddToCart }) => {
+  const [selectedProductId, setSelectedProductId] = useState(products[0].id);
+  const [selectedVariantId, setSelectedVariantId] = useState(products[0].variants[0].id);
   const [quantity, setQuantity] = useState(1);
+  const selectedProduct = products.find((p) => p.id === selectedProductId);
 
-  const handleAdd = () => {
-    if (!selectedProduct || !selectedVariant || quantity < 1) return;
+  useEffect(() => {
+    // Reset variant when product changes
+    setSelectedVariantId(selectedProduct.variants[0].id);
+  }, [selectedProductId]);
 
-    const product = products.find((p) => p.name === selectedProduct);
-    if (!product) return;
-
-    const price = product.variants[selectedVariant];
-    if (!price) return;
-
+  const handleAddToCart = () => {
+    const variant = selectedProduct.variants.find((v) => v.id === selectedVariantId);
     onAddToCart({
-      product: selectedProduct,
-      variant: selectedVariant,
-      quantity: parseInt(quantity, 10),
-      price,
+      product: selectedProduct.name,
+      variant: variant.name,
+      price: variant.price,
+      quantity,
     });
-
-    setQuantity(1);
-    setSelectedVariant("");
-    setSelectedProduct("");
+    setQuantity(1); // Reset quantity after adding
   };
-
-  const selectedProductData = products.find((p) => p.name === selectedProduct);
 
   return (
     <div className="product-selector">
-      <button className="glass uniform-btn w-full mb-4 cursor-default" disabled>
-        Pilih Produk ({cartCount} dipilih)
-      </button>
-
-      <label htmlFor="product">Produk</label>
-      <select
-        id="product"
-        value={selectedProduct}
-        onChange={(e) => {
-          setSelectedProduct(e.target.value);
-          setSelectedVariant("");
-        }}
-      >
-        <option value="">Pilih produk</option>
-        {products.map((p) => (
-          <option key={p.name} value={p.name}>
-            {p.name}
-          </option>
-        ))}
-      </select>
-
-      {selectedProduct && selectedProductData && (
-        <>
-          <label htmlFor="variant">Varian</label>
-          <select
-            id="variant"
-            value={selectedVariant}
-            onChange={(e) => setSelectedVariant(e.target.value)}
-          >
-            <option value="">Pilih varian</option>
-            {Object.keys(selectedProductData.variants).map((v) => (
-              <option key={v} value={v}>
-                {v}
-              </option>
-            ))}
-          </select>
-        </>
-      )}
-
-      {selectedVariant && (
-        <>
-          <label htmlFor="quantity">Jumlah</label>
-          <input
-            id="quantity"
-            type="number"
-            min="1"
-            value={quantity}
-            onChange={(e) => setQuantity(parseInt(e.target.value, 10) || 1)}
-          />
-        </>
-      )}
-
-      <button onClick={handleAdd} disabled={!selectedProduct || !selectedVariant || quantity < 1}>
-        Tambah ke Keranjang
-      </button>
+      <h2>Pilih Produk</h2>
+      <div>
+        <label>Produk:</label>
+        <select
+          value={selectedProductId}
+          onChange={(e) => setSelectedProductId(parseInt(e.target.value))}
+        >
+          {products.map((product) => (
+            <option key={product.id} value={product.id}>
+              {product.name}
+            </option>
+          ))}
+        </select>
+      </div>
+      <div>
+        <label>Jenis:</label>
+        <select
+          value={selectedVariantId}
+          onChange={(e) => setSelectedVariantId(parseInt(e.target.value))}
+        >
+          {selectedProduct.variants.map((variant) => (
+            <option key={variant.id} value={variant.id}>
+              {variant.name} (Rp {variant.price.toLocaleString("id-ID")})
+            </option>
+          ))}
+        </select>
+      </div>
+      <div>
+        <label>Jumlah:</label>
+        <input
+          type="number"
+          min="1"
+          value={quantity}
+          onChange={(e) => setQuantity(parseInt(e.target.value))}
+        />
+      </div>
+      <button onClick={handleAddToCart}>Tambah ke Keranjang</button>
     </div>
   );
 };
