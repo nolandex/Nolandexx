@@ -1,8 +1,18 @@
 import React, { useState, lazy, Suspense } from "react";
-import { FaGlobe, FaWhatsapp, FaCommentDots, FaInstagram, FaTiktok, FaFacebook, FaTelegram, FaEnvelope } from "react-icons/fa";
-import { products } from "../data/products"; // Ensure it's the correct path
+import {
+  FaGlobe,
+  FaWhatsapp,
+  FaCommentDots,
+  FaInstagram,
+  FaTiktok,
+  FaFacebook,
+  FaTelegram,
+  FaEnvelope,
+} from "react-icons/fa";
+import { products } from "../data/products";
 import "./Home.css";
 
+// Lazy load komponen
 const ProductSelector = lazy(() => import("../components/ProductSelector/ProductSelector"));
 const Cart = lazy(() => import("../components/Cart/Cart"));
 
@@ -11,16 +21,15 @@ const Home = () => {
 
   const addToCart = (item) => {
     const existingItemIndex = cart.findIndex(
-      (cartItem) => cartItem.product === item.product && cartItem.variant === item.variant
+      (cartItem) =>
+        cartItem.product === item.product && cartItem.variant === item.variant
     );
 
     if (existingItemIndex !== -1) {
-      // If the item is already in the cart, update the quantity
       const updatedCart = [...cart];
       updatedCart[existingItemIndex].quantity += item.quantity;
       setCart(updatedCart);
     } else {
-      // If the item is not in the cart, add it
       setCart([...cart, item]);
     }
   };
@@ -56,7 +65,7 @@ const Home = () => {
       <div className="container mx-auto px-4 text-center">
         <h1 className="text-5xl md:text-7xl font-bold mt-10 mb-10">NolanDex</h1>
 
-        {/* Button links */}
+        {/* Link Button */}
         <div className="flex flex-col items-center gap-4 max-w-5xl mx-auto mt-8">
           <a
             href="https://nolandex.my.id"
@@ -81,7 +90,7 @@ const Home = () => {
           </a>
         </div>
 
-        {/* Social media */}
+        {/* Social Media */}
         <div className="glass flex items-center justify-center gap-4 p-4 rounded-lg hover:bg-white/20 transition duration-200 w-full max-w-md mt-6">
           <a href="https://www.instagram.com/nolandexco" className="text-gray-400 hover:text-white">
             <FaInstagram size={24} />
@@ -102,34 +111,21 @@ const Home = () => {
 
         {/* Product Selector */}
         <div className="max-w-lg mx-auto mt-12">
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense fallback={<div>Loading products...</div>}>
             <ProductSelector onAddToCart={addToCart} products={products} />
           </Suspense>
         </div>
 
         {/* Cart Section */}
         {cart.length > 0 && (
-          <div className="mt-8 max-w-md mx-auto">
-            <h2 className="text-2xl font-semibold mb-4">Your Cart</h2>
-            {cart.map((item, index) => (
-              <div key={index} className="cart-item">
-                <div className="cart-item-details">
-                  <span>{item.product} - {item.variant}</span>
-                  <span>Quantity: {item.quantity}</span>
-                  <span>Rp {item.price.toLocaleString("id-ID")}</span>
-                </div>
-                <button
-                  className="cart-item-remove"
-                  onClick={() => removeFromCart(index)}
-                >
-                  Remove
-                </button>
-              </div>
-            ))}
+          <div className="mt-10 max-w-md mx-auto">
+            <Suspense fallback={<div>Loading cart...</div>}>
+              <Cart cart={cart} />
+            </Suspense>
 
             <button
               onClick={handleCheckout}
-              className="glass flex items-center justify-center gap-2 p-4 rounded-lg hover:bg-white/20 transition duration-200 w-full"
+              className="glass flex items-center justify-center gap-2 p-4 rounded-lg hover:bg-white/20 transition duration-200 w-full mt-4"
               aria-label="Checkout via WhatsApp"
             >
               <FaWhatsapp />
