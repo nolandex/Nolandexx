@@ -1,136 +1,99 @@
-import React, { useState, lazy, Suspense } from "react";
-import {
-  FaGlobe,
-  FaWhatsapp,
-  FaCommentDots,
-  FaInstagram,
-  FaTiktok,
-  FaFacebook,
-  FaTelegram,
-  FaEnvelope,
-} from "react-icons/fa";
-import products from "../data/products"; // Sudah diperbaiki: default import dan path benar
-import "./Home.css";
+/* src/pages/Home/Home.css */
 
-const ProductSelector = lazy(() => import("../components/ProductSelector/ProductSelector"));
-const Cart = lazy(() => import("../components/Cart/Cart"));
+/* Efek glassmorphism */
+.glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  transition: background 0.3s ease;
+}
 
-const Home = () => {
-  const [cart, setCart] = useState([]);
+.glass:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
 
-  const addToCart = (item) => {
-    setCart([...cart, item]);
-  };
+/* Styling untuk section home */
+#home {
+  color: white;
+  min-height: 100vh;
+  overflow-x: hidden;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
 
-  const generateWhatsAppMessage = () => {
-    const items = cart
-      .map(
-        (item) =>
-          `${item.product} - ${item.variant} (Rp ${item.price.toLocaleString("id-ID")}) x ${
-            item.quantity
-          }`
-      )
-      .join("%0A");
-    const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-    return `Hi%2C%20I%20want%20to%20buy:%0A${items}%0ATotal: Rp ${total.toLocaleString("id-ID")}`;
-  };
+/* Container utama */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
 
-  const handleCheckout = () => {
-    const message = generateWhatsAppMessage();
-    window.open(`https://wa.me/6285156779923?text=${message}`, "_blank");
-  };
+/* Judul utama */
+h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
 
-  return (
-    <section id="home" className="min-h-screen relative z-10 pt-8 pb-8 overflow-x-hidden">
-      <div className="container mx-auto px-4 text-center">
-        <h1 className="text-5xl md:text-7xl font-bold mt-10 mb-10">NolanDex</h1>
+@media (min-width: 768px) {
+  h1 {
+    font-size: 4.5rem;
+  }
+}
 
-        <div className="flex flex-col items-center gap-4 max-w-5xl mx-auto mt-8">
-          <a
-            href="https://nolandex.my.id"
-            className="glass flex items-center justify-center gap-2 p-4 rounded-lg hover:bg-white/20 transition duration-200 w-full max-w-md"
-          >
-            <FaGlobe />
-            <span>Pesan di Website</span>
-          </a>
-          <a
-            href="https://wa.me/6285156779923?text=Hi%2C%20I'm%20interested%20in%20your%20business%20setup%20services"
-            className="glass flex items-center justify-center gap-2 p-4 rounded-lg hover:bg-white/20 transition duration-200 w-full max-w-md"
-          >
-            <FaWhatsapp />
-            <span>Pesan di WhatsApp</span>
-          </a>
-          <a
-            href="#contact-section"
-            className="glass flex items-center justify-center gap-2 p-4 rounded-lg hover:bg-white/20 transition duration-200 w-full max-w-md"
-          >
-            <FaCommentDots />
-            <span>Pesan di Sini</span>
-          </a>
+/* Styling untuk produk di keranjang */
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  margin-bottom: 1rem;
+  border-radius: 8px;
+}
 
-          <div className="glass flex items-center justify-center gap-4 p-4 rounded-lg hover:bg-white/20 transition duration-200 w-full max-w-md">
-            <a
-              href="https://www.instagram.com/nolandexco?igsh=MWV3cXRuejBqcGwyZg=="
-              className="text-gray-400 hover:text-white"
-              aria-label="Instagram"
-            >
-              <FaInstagram size={24} />
-            </a>
-            <a
-              href="https://www.tiktok.com/@nolandexco?_t=ZS-8vwewu0P3sm&_r=1"
-              className="text-gray-400 hover:text-white"
-              aria-label="TikTok"
-            >
-              <FaTiktok size={24} />
-            </a>
-            <a
-              href="https://www.facebook.com/nolandexco"
-              className="text-gray-400 hover:text-white"
-              aria-label="Facebook"
-            >
-              <FaFacebook size={24} />
-            </a>
-            <a
-              href="https://t.me/nolandex"
-              className="text-gray-400 hover:text-white"
-              aria-label="Telegram"
-            >
-              <FaTelegram size={24} />
-            </a>
-            <a
-              href="mailto:nolandexco@gmail.com"
-              className="text-gray-400 hover:text-white"
-              aria-label="Email"
-            >
-              <FaEnvelope size={24} />
-            </a>
-          </div>
-        </div>
+.cart-item-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
 
-        <div className="max-w-lg mx-auto mt-12">
-          <Suspense fallback={<div>Loading...</div>}>
-            <ProductSelector onAddToCart={addToCart} />
-            <Cart cart={cart} />
-          </Suspense>
-        </div>
+.cart-item-details span {
+  font-size: 1.1rem;
+  color: white;
+}
 
-        {cart.length > 0 && (
-          <div className="mt-8 max-w-md mx-auto">
-            <button
-              onClick={handleCheckout}
-              className="glass flex items-center justify-center gap-2 p-4 rounded-lg hover:bg-white/20 transition duration-200 w-full"
-              aria-label="Checkout via WhatsApp"
-            >
-              <FaWhatsapp />
-              <span>Checkout via WhatsApp</span>
-            </button>
-          </div>
-        )}
+.cart-item-remove {
+  background: #ff3b30;
+  color: white;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
 
-        <section id="contact-section" className="mt-20"></section>
-      </div>
-    </section>
-  );
-};
+.cart-item-remove:hover {
+  background: #ff4d4d;
+}
 
-export default Home;
+.cart-item-remove:focus {
+  outline: none;
+}
+
+/* Responsive untuk produk dan keranjang */
+@media (max-width: 640px) {
+  .container {
+    padding: 0 0.5rem;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  .cart-item-details span {
+    font-size: 1rem;
+  }
+  }
