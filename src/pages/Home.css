@@ -45,59 +45,14 @@ h1 {
   }
 }
 
-/* Product Selector Styling */
-.product-selector {
-  max-width: 600px;
-  margin: 2rem auto;
-  padding: 1.5rem;
-  background-color: #0a84ff; /* Blue background like button */
-  color: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.product-selector label {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: 600;
-  color: white;
-}
-
-.product-selector select,
-.product-selector input {
-  width: 100%;
-  background: white;
-  border: none;
-  border-radius: 6px;
-  padding: 10px;
-  margin-bottom: 1rem;
-  color: #333;
-}
-
-.product-selector button {
-  width: 100%;
-  background-color: #0a84ff;
-  color: white;
-  border: none;
-  padding: 12px;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.product-selector button:hover {
-  background-color: #006edc;
-}
-
-/* Cart styling */
+/* Styling for cart items */
 .cart {
   max-width: 600px;
   margin: 2rem auto;
   padding: 1.5rem;
-  background-color: #0a84ff; /* Same blue as buttons */
-  color: white;
+  background-color: #0a84ff; /* Warna biru seperti tombol utama */
   border-radius: 12px;
+  color: white;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
@@ -135,21 +90,18 @@ h1 {
 }
 
 .cart-item-remove {
-  background: #ff3b30;
+  background-color: #ff3b30;
   color: white;
   border: none;
-  padding: 8px 12px;
-  border-radius: 6px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: 600;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: background-color 0.3s ease;
 }
 
 .cart-item-remove:hover {
-  background: #ff4d4d;
-}
-
-.cart-item-remove:focus {
-  outline: none;
+  background-color: #ff4d4d;
 }
 
 .cart h3 {
@@ -157,6 +109,53 @@ h1 {
   margin-top: 1.5rem;
   font-size: 1.2rem;
   font-weight: 600;
+}
+
+/* Product Selector Styling */
+.product-selector {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background-color: #0a84ff; /* Warna biru sama seperti tombol utama */
+  border-radius: 12px;
+  color: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.product-selector label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: white;
+}
+
+.product-selector select,
+.product-selector input {
+  width: 100%;
+  background-color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 10px;
+  margin-bottom: 1rem;
+  color: #333;
+  font-weight: 500;
+}
+
+/* Button dalam product selector */
+.product-selector button {
+  width: 100%;
+  background-color: #0a84ff; /* Sesuai warna tombol utama */
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.product-selector button:hover {
+  background-color: #006edc;
 }
 
 /* Responsive for smaller screens */
@@ -173,7 +172,8 @@ h1 {
     font-size: 1rem;
   }
 
-  .product-selector, .cart {
+  .product-selector,
+  .cart {
     padding: 1rem;
   }
 }
