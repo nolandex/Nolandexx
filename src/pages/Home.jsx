@@ -9,25 +9,14 @@ import {
   FaTelegram,
   FaEnvelope,
 } from "react-icons/fa";
-import { Carousel } from "react-responsive-carousel";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
 
-// Import images for Product 1
+// Import images for product cards
 import product1 from "../assets/images/product1.jpg";
 import product2 from "../assets/images/product2.jpg";
-import product1a from "../assets/images/product1a.jpg";
-import product1b from "../assets/images/product1b.jpg";
-import product1c from "../assets/images/product1c.jpg";
 
 const products = [
   { id: 1, title: "Product 1", price: "$29.99", image: product1 },
   { id: 2, title: "Product 2", price: "$39.99", image: product2 },
-];
-
-const product1Images = [
-  { id: 1, image: product1a },
-  { id: 2, image: product1b },
-  { id: 3, image: product1c },
 ];
 
 // Websites to embed under Product 2
@@ -111,17 +100,17 @@ const Home = () => {
 
           {selectedProduct === 1 && (
             <div className="mt-8 w-full max-w-xs mx-auto">
-              <Carousel showThumbs={false} showStatus={false} infiniteLoop>
-                {product1Images.map((img) => (
-                  <div key={img.id}>
-                    <img
-                      src={img.image}
-                      alt={`Product 1 - ${img.id}`}
-                      className="w-full max-w-xs h-48 object-cover rounded-md"
-                    />
-                  </div>
-                ))}
-              </Carousel>
+              <div className="glass p-6 rounded-lg text-white text-center">
+                <h2 className="text-xl font-bold mb-2">Setup Bisnis Online</h2>
+                <p className="text-sm mb-2">Mulai Bisnis Anda, Kami Siapkan Semua</p>
+                <p className="text-lg font-semibold mb-4">Rp50.000</p>
+                <ul className="text-sm space-y-1">
+                  <li>Website</li>
+                  <li>Chatbot Otomatis</li>
+                  <li>Social Media Konten</li>
+                  <li>Social Media Booster</li>
+                </ul>
+              </div>
               <a
                 href="https://wa.me/6285156779923?text=Hi%2C%20I%20want%20to%20buy%20Product%201"
                 className="glass flex items-center justify-center gap-2 p-4 mt-4 rounded-lg hover:bg-white/20 transition duration-200 w-full"
