@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, lazy, Suspense } from "react";
 import {
   FaGlobe,
   FaWhatsapp,
@@ -9,18 +9,36 @@ import {
   FaTelegram,
   FaEnvelope,
 } from "react-icons/fa";
-import ProductSelector from "../../components/ProductSelector/ProductSelector";
-import Cart from "../../components/Cart/Cart";
+import { products } from "../../data/products";
 import "./Home.css";
 
-// Impor data produk dari src/data/products.js
-import { products } from "../../data/products";
+// Lazy load components
+const ProductSelector = lazy(() => import("../../components/ProductSelector/ProductSelector"));
+const Cart = lazy(() => import("../../components/Cart/Cart"));
 
 const Home = () => {
   const [cart, setCart] = useState([]);
 
   const addToCart = (item) => {
     setCart([...cart, item]);
+  };
+
+  const generateWhatsAppMessage = () => {
+    const items = cart
+      .map(
+        (item) =>
+          `${item.product} - ${item.variant} (Rp ${item.price.toLocaleString("id-ID")}) x ${
+            item.quantity
+          }`
+      )
+      .join("%0A");
+    const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    return `Hi%2C%20I%20want%20to%20buy:%0A${items}%0ATotal: Rp ${total.toLocaleString("id-ID")}`;
+  };
+
+  const handleCheckout = () => {
+    const message = generateWhatsAppMessage();
+    window.open(`https://wa.me/6285156779923?text=${message}`, "_blank");
   };
 
   return (
@@ -52,48 +70,57 @@ const Home = () => {
           </a>
 
           <div className="glass flex items-center justify-center gap-4 p-4 rounded-lg hover:bg-white/20 transition duration-200 w-full max-w-md">
-            <a href="https://www.instagram.com/nolandexco?igsh=MWV3cXRuejBqcGwyZg==" className="text-gray-400 hover:text-white">
+            <a
+              href="https://www.instagram.com/nolandexco?igsh=MWV3cXRuejBqcGwyZg=="
+              className="text-gray-400 hover:text-white"
+              aria-label="Instagram"
+            >
               <FaInstagram size={24} />
             </a>
-            <a href="https://www.tiktok.com/@nolandexco?_t=ZS-8vwewu0P3sm&_r=1" className="text-gray-400 hover:text-white">
+            <a
+              href="https://www.tiktok.com/@nolandexco?_t=ZS-8vwewu0P3sm&_r=1"
+              className="text-gray-400 hover:text-white"
+              aria-label="TikTok"
+            >
               <FaTiktok size={24} />
             </a>
-            <a href="https://www.facebook.com/nolandexco" className="text-gray-400 hover:text-white">
+            <a
+              href="https://www.facebook.com/nolandexco"
+              className="text-gray-400 hover:text-white"
+              aria-label="Facebook"
+            >
               <FaFacebook size={24} />
             </a>
-            <a href="https://t.me/nolandex" className="text-gray-400 hover:text-white">
+            <a href="https://t.me/nolandex" className="text-gray-400 hover:text-white" aria-label="Telegram">
               <FaTelegram size={24} />
             </a>
-            <a href="mailto:nolandexco@gmail.com" className="text-gray-400 hover:text-white">
+            <a
+              href="mailto:nolandexco@gmail.com"
+              className="text-gray-400 hover:text-white"
+              aria-label="Email"
+            >
               <FaEnvelope size={24} />
             </a>
           </div>
         </div>
 
-        {/* Bagian Produk dan Keranjang */}
         <div className="max-w-lg mx-auto mt-12">
-          <ProductSelector onAddToCart={addToCart} />
-          <Cart cart={cart} />
+          <Suspense fallback={<div>Loading...</div>}>
+            <ProductSelector onAddToCart={addToCart} />
+            <Cart cart={cart} />
+          </Suspense>
         </div>
 
-        {/* Tombol Checkout via WhatsApp */}
         {cart.length > 0 && (
           <div className="mt-8 max-w-md mx-auto">
-            <a
-              href={`https://wa.me/6285156779923?text=Hi%2C%20I%20want%20to%20buy:%0A${cart
-                .map(
-                  (item) =>
-                    `${item.product} - ${item.variant} (Rp ${item.price.toLocaleString(
-                      "id-ID"
-                    )}) x ${item.quantity}`
-                )
-                .join("%0A")}%0ATotal: Rp ${cart
-                .reduce((sum, item) => sum + item.price * item.quantity^*$.toLocaleString("id-ID")}`}
+            <button
+              onClick={handleCheckout}
               className="glass flex items-center justify-center gap-2 p-4 rounded-lg hover:bg-white/20 transition duration-200 w-full"
+              aria-label="Checkout via WhatsApp"
             >
               <FaWhatsapp />
               <span>Checkout via WhatsApp</span>
-            </a>
+            </button>
           </div>
         )}
 
