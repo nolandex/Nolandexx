@@ -22,6 +22,7 @@ const Home = () => {
     const existingIndex = cart.findIndex(
       (i) => i.product === item.product && i.variant === item.variant
     );
+
     if (existingIndex !== -1) {
       const updatedCart = [...cart];
       updatedCart[existingIndex].quantity += item.quantity;
@@ -40,10 +41,15 @@ const Home = () => {
     const items = cart
       .map(
         (item) =>
-          `${item.product} - ${item.variant} (Rp ${item.price.toLocaleString("id-ID")}) x ${item.quantity}`
+          `${item.product} - ${item.variant} (Rp ${item.price.toLocaleString(
+            "id-ID"
+          )}) x ${item.quantity}`
       )
       .join("%0A");
-    const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    const total = cart.reduce(
+      (sum, item) => sum + item.price * item.quantity,
+      0
+    );
     return `Hi%2C%20I%20want%20to%20buy:%0A${items}%0ATotal: Rp ${total.toLocaleString("id-ID")}`;
   };
 
@@ -59,15 +65,15 @@ const Home = () => {
 
         {/* Top Buttons */}
         <div className="flex flex-col items-center gap-4 max-w-5xl mx-auto mt-8">
-          <a href="https://nolandex.my.id" className="glass uniform-btn">
+          <a href="https://nolandex.my.id" className="glass">
             <FaGlobe />
             <span>Pesan di Website</span>
           </a>
-          <a href="https://wa.me/6285156779923?text=Hi%2C%20I'm%20interested%20in%20your%20business%20setup%20services" className="glass uniform-btn">
+          <a href="https://wa.me/6285156779923?text=Hi%2C%20I'm%20interested%20in%20your%20business%20setup%20services" className="glass">
             <FaWhatsapp />
             <span>Pesan di WhatsApp</span>
           </a>
-          <a href="#contact-section" className="glass uniform-btn">
+          <a href="#contact-section" className="glass">
             <FaCommentDots />
             <span>Pesan di Sini</span>
           </a>
@@ -95,7 +101,7 @@ const Home = () => {
         {/* Product Selector */}
         <div className="max-w-lg mx-auto mt-12">
           <Suspense fallback={<div>Loading...</div>}>
-            <ProductSelector onAddToCart={addToCart} products={products} cartCount={cart.length} />
+            <ProductSelector onAddToCart={addToCart} products={products} />
           </Suspense>
         </div>
 
@@ -105,7 +111,11 @@ const Home = () => {
             <Suspense fallback={<div>Loading...</div>}>
               <Cart cart={cart} onRemove={removeFromCart} />
             </Suspense>
-            <button onClick={handleCheckout} className="glass uniform-btn mt-4">
+            <button
+              onClick={handleCheckout}
+              className="glass mt-4"
+              aria-label="Checkout via WhatsApp"
+            >
               <FaWhatsapp />
               <span>Checkout via WhatsApp</span>
             </button>
