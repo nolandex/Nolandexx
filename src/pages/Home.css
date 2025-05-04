@@ -1,4 +1,4 @@
-/* ========== Global Glassmorphism Button Style ========== */
+/* Glassmorphism effect */
 .glass {
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
@@ -7,43 +7,42 @@
   padding: 0.75rem 1.25rem;
   display: flex;
   align-items: center;
-  justify-content: center;
   gap: 0.5rem;
+  transition: background 0.3s ease;
+  justify-content: center;
+  text-align: center;
   color: white;
   font-weight: 600;
-  text-align: center;
   text-decoration: none;
-  transition: background 0.3s ease;
 }
 
 .glass:hover {
   background: rgba(255, 255, 255, 0.2);
 }
 
-/* ========== Layout and Typography ========== */
-body {
-  color: white;
-  background-color: #0d0d0d;
-}
-
+/* Home section styling */
 #home {
+  color: white;
   min-height: 100vh;
   overflow-x: hidden;
-  padding: 2rem 1rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
+/* Main container */
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1rem;
 }
 
+/* Main heading */
 h1 {
   font-size: 3rem;
   font-weight: 700;
-  margin: 2.5rem 0;
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  text-align: center;
 }
 
 @media (min-width: 768px) {
@@ -52,7 +51,7 @@ h1 {
   }
 }
 
-/* ========== Cart Styling ========== */
+/* Cart styles */
 .cart {
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
@@ -71,7 +70,6 @@ h1 {
 .cart-item {
   display: flex;
   justify-content: space-between;
-  align-items: center;
   padding: 1rem;
   margin-bottom: 1rem;
   border-radius: 8px;
@@ -106,12 +104,12 @@ h1 {
 
 .cart h3 {
   text-align: right;
-  margin-top: 1.25rem;
+  margin-top: 20px;
   font-size: 1.2rem;
   font-weight: bold;
 }
 
-/* ========== Product Selector ========== */
+/* Product selector */
 .product-selector {
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
@@ -124,7 +122,8 @@ h1 {
 .product-selector label {
   display: block;
   font-weight: 600;
-  margin: 0.5rem 0 0.25rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.25rem;
 }
 
 .product-selector select,
@@ -153,7 +152,7 @@ h1 {
   background-color: #45a049;
 }
 
-/* ========== Responsive ========== */
+/* Responsive */
 @media (max-width: 640px) {
   h1 {
     font-size: 2.5rem;
