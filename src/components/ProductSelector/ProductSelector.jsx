@@ -9,9 +9,9 @@ const ProductSelector = ({ onAddToCart }) => {
   const selectedProduct = products.find((p) => p.id === selectedProductId);
 
   useEffect(() => {
-    // Reset variant saat produk berubah
+    // Reset variant when product changes
     setSelectedVariantId(selectedProduct.variants[0].id);
-  }, [selectedProductId, selectedProduct.variants]); // Fixing the missing dependency here
+  }, [selectedProductId]);
 
   const handleAddToCart = () => {
     const variant = selectedProduct.variants.find((v) => v.id === selectedVariantId);
@@ -21,7 +21,7 @@ const ProductSelector = ({ onAddToCart }) => {
       price: variant.price,
       quantity,
     });
-    setQuantity(1); // Reset jumlah setelah ditambahkan
+    setQuantity(1); // Reset quantity after adding
   };
 
   return (
