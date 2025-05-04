@@ -36,6 +36,7 @@ h1 {
   margin-top: 2.5rem;
   margin-bottom: 2.5rem;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  text-align: center;
 }
 
 @media (min-width: 768px) {
@@ -44,33 +45,101 @@ h1 {
   }
 }
 
-/* Styling for cart items */
-.cart-item {
+/* Product Selector Styling */
+.product-selector {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background-color: #0a84ff; /* Blue background like button */
+  color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.product-selector label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: white;
+}
+
+.product-selector select,
+.product-selector input {
+  width: 100%;
+  background: white;
+  border: none;
+  border-radius: 6px;
+  padding: 10px;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.product-selector button {
+  width: 100%;
+  background-color: #0a84ff;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.product-selector button:hover {
+  background-color: #006edc;
+}
+
+/* Cart styling */
+.cart {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background-color: #0a84ff; /* Same blue as buttons */
+  color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.cart h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+}
+
+.cart ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.cart li {
+  background-color: rgba(255, 255, 255, 0.15);
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
   display: flex;
   justify-content: space-between;
-  padding: 1rem;
-  margin-bottom: 1rem;
-  border-radius: 8px;
+  align-items: center;
 }
 
 .cart-item-details {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.3rem;
 }
 
 .cart-item-details span {
   font-size: 1.1rem;
   color: white;
-  background: none; /* Removed background for a cleaner look */
 }
 
 .cart-item-remove {
   background: #ff3b30;
   color: white;
   border: none;
-  padding: 0.5rem;
-  border-radius: 4px;
+  padding: 8px 12px;
+  border-radius: 6px;
   cursor: pointer;
   transition: background 0.3s ease;
 }
@@ -81,6 +150,13 @@ h1 {
 
 .cart-item-remove:focus {
   outline: none;
+}
+
+.cart h3 {
+  text-align: right;
+  margin-top: 1.5rem;
+  font-size: 1.2rem;
+  font-weight: 600;
 }
 
 /* Responsive for smaller screens */
@@ -95,5 +171,9 @@ h1 {
 
   .cart-item-details span {
     font-size: 1rem;
+  }
+
+  .product-selector, .cart {
+    padding: 1rem;
   }
 }
