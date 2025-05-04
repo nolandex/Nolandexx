@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { products } from "../../data/products";
+import { products } from "../../data/products"; // Make sure it's the correct path
 import "./ProductSelector.css";
 
 const ProductSelector = ({ onAddToCart }) => {
