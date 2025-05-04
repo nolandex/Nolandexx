@@ -19,7 +19,20 @@ const Home = () => {
   const [cart, setCart] = useState([]);
 
   const addToCart = (item) => {
-    setCart([...cart, item]);
+    const existingItemIndex = cart.findIndex(
+      (cartItem) =>
+        cartItem.product === item.product && cartItem.variant === item.variant
+    );
+
+    if (existingItemIndex !== -1) {
+      // If the item is already in the cart, update the quantity
+      const updatedCart = [...cart];
+      updatedCart[existingItemIndex].quantity += item.quantity;
+      setCart(updatedCart);
+    } else {
+      // If the item is not in the cart, add it
+      setCart([...cart, item]);
+    }
   };
 
   const removeFromCart = (index) => {
@@ -31,9 +44,9 @@ const Home = () => {
     const items = cart
       .map(
         (item) =>
-          `${item.product} - ${item.variant} (Rp ${item.price.toLocaleString("id-ID")}) x ${
-            item.quantity
-          }`
+          `${item.product} - ${item.variant} (Rp ${item.price.toLocaleString(
+            "id-ID"
+          )}) x ${item.quantity}`
       )
       .join("%0A");
     const total = cart.reduce(
