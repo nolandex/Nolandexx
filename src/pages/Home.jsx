@@ -10,13 +10,13 @@ import {
   FaEnvelope,
 } from "react-icons/fa";
 
-// Import images from the repository
-import product1 from "./assets/images/product1.jpg";
-import product2 from "./assets/images/product2.jpg";
-import product3 from "./assets/images/product3.jpg";
-import product4 from "./assets/images/product4.jpg";
-import product5 from "./assets/images/product5.jpg";
-import product6 from "./assets/images/product6.jpg";
+// Import images with correct relative path
+import product1 from "../assets/images/product1.jpg";
+import product2 from "../assets/images/product2.jpg";
+import product3 from "../assets/images/product3.jpg";
+import product4 from "../assets/images/product4.jpg";
+import product5 from "../assets/images/product5.jpg";
+import product6 from "../assets/images/product6.jpg";
 
 const products = [
   { id: 1, title: "Product 1", price: "$29.99", image: product1 },
