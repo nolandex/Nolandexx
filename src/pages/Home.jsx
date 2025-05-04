@@ -33,8 +33,8 @@ const product1Images = [
 // Websites to embed under Product 2
 const product2Websites = [
   { id: 1, url: "https://www.nolandex.my.id/", title: "NolanDex Website" },
-  { id: 2, url: "https://github.com/nolandex/Nolancoz/tree/main", title: "GitHub Repository" },
-  { id: 3, url: "https://nolandexco.vercel.app/", title: "NolanDex Vercel App" },
+  { id: 2, url: "https://e-shopit.vercel.app/", title: "E-Shopit App" },
+  { id: 3, url: "https://nolanxzy.vercel.app/", title: "Nolanxzy App" },
 ];
 
 const Home = () => {
@@ -140,7 +140,7 @@ const Home = () => {
                   <iframe
                     src={website.url}
                     title={website.title}
-                    className="w-full max-w-xs h-48 rounded-md border-0"
+                    className="w-full max-w-xs h-96 rounded-md border-0"
                     allowFullScreen
                     loading="lazy"
                   />
