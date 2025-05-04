@@ -33,8 +33,7 @@ const product1Images = [
 // Websites to embed under Product 2
 const product2Websites = [
   { id: 1, url: "https://www.nolandex.my.id/", title: "NolanDex Website" },
-  { id: 2, url: "https://e-shopit.vercel.app/", title: "E-Shopit App" },
-  { id: 3, url: "https://nolanxzy.vercel.app/", title: "Nolanxzy App" },
+  { id: 2, url: "https://nolanxzy.vercel.app/", title: "Nolanxzy App" },
 ];
 
 const Home = () => {
