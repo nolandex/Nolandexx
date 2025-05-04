@@ -19,12 +19,6 @@ const products = [
   { id: 2, title: "Product 2", price: "$39.99", image: product2 },
 ];
 
-// Websites to embed under Product 2
-const product2Websites = [
-  { id: 1, url: "https://www.nolandex.my.id/", title: "NolanDex Website" },
-  { id: 2, url: "https://nolanxzy.vercel.app/", title: "Nolanxzy App" },
-];
-
 const Home = () => {
   const [selectedProduct, setSelectedProduct] = useState(null);
 
@@ -122,34 +116,26 @@ const Home = () => {
           )}
 
           {selectedProduct === 2 && (
-            <div className="mt-8 w-full max-w-xs mx-auto flex flex-col gap-4">
-              {product2Websites.map((website) => (
-                <div key={website.id} className="flex flex-col items-center">
-                  <iframe
-                    src={website.url}
-                    title={website.title}
-                    className="w-full max-w-xs h-96 rounded-md border-0"
-                    allowFullScreen
-                    loading="lazy"
-                  />
-                  {/* Fallback link if iframe fails to load (uncomment if needed) */}
-                  {/* <a
-                    href={website.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-400 underline mt-2"
-                  >
-                    Open {website.title} in new tab
-                  </a> */}
-                  <a
-                    href="https://wa.me/6285156779923?text=Hi%2C%20I%20want%20to%20buy%20Product%202"
-                    className="glass flex items-center justify-center gap-2 p-4 mt-4 rounded-lg hover:bg-white/20 transition duration-200 w-full"
-                  >
-                    <FaWhatsapp />
-                    <span>Bayar Sekarang</span>
-                  </a>
-                </div>
-              ))}
+            <div className="mt-8 w-full max-w-xs mx-auto">
+              <div className="glass p-6 rounded-lg text-white text-center">
+                <h2 className="text-xl font-bold mb-2">Website</h2>
+                <p className="text-sm mb-2">Website untuk Bisnis anda gratis Domain my.id / web.id</p>
+                <p className="text-lg font-semibold mb-4">Rp24.999</p>
+                <ul className="text-sm space-y-1">
+                  <li>Toko Online</li>
+                  <li>Landing Page</li>
+                  <li>Portofolio</li>
+                  <li>Profil Bisnis</li>
+                  <li>Unlimited Hosting & Gratis Domain</li>
+                </ul>
+              </div>
+              <a
+                href="https://wa.me/6285156779923?text=Hi%2C%20I%20want%20to%20buy%20Product%202"
+                className="glass flex items-center justify-center gap-2 p-4 mt-4 rounded-lg hover:bg-white/20 transition duration-200 w-full"
+              >
+                <FaWhatsapp />
+                <span>Bayar Sekarang</span>
+              </a>
             </div>
           )}
         </div>
