@@ -10,13 +10,21 @@ import {
   FaEnvelope,
 } from "react-icons/fa";
 
+// Import images from the repository
+import product1 from "./assets/images/product1.jpg";
+import product2 from "./assets/images/product2.jpg";
+import product3 from "./assets/images/product3.jpg";
+import product4 from "./assets/images/product4.jpg";
+import product5 from "./assets/images/product5.jpg";
+import product6 from "./assets/images/product6.jpg";
+
 const products = [
-  { id: 1, title: "Product 1", price: "$29.99", image: "https://via.placeholder.com/150" },
-  { id: 2, title: "Product 2", price: "$39.99", image: "https://via.placeholder.com/150" },
-  { id: 3, title: "Product 3", price: "$19.99", image: "https://via.placeholder.com/150" },
-  { id: 4, title: "Product 4", price: "$49.99", image: "https://via.placeholder.com/150" },
-  { id: 5, title: "Product 5", price: "$24.99", image: "https://via.placeholder.com/150" },
-  { id: 6, title: "Product 6", price: "$34.99", image: "https://via.placeholder.com/150" },
+  { id: 1, title: "Product 1", price: "$29.99", image: product1 },
+  { id: 2, title: "Product 2", price: "$39.99", image: product2 },
+  { id: 3, title: "Product 3", price: "$19.99", image: product3 },
+  { id: 4, title: "Product 4", price: "$49.99", image: product4 },
+  { id: 5, title: "Product 5", price: "$24.99", image: product5 },
+  { id: 6, title: "Product 6", price: "$34.99", image: product6 },
 ];
 
 const Home = () => {
