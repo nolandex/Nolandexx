@@ -1,6 +1,6 @@
 /* src/pages/Home/Home.css */
 
-/* Efek glassmorphism */
+/* Glassmorphism effect */
 .glass {
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
@@ -13,7 +13,7 @@
   background: rgba(255, 255, 255, 0.2);
 }
 
-/* Styling untuk section home */
+/* Home section styling */
 #home {
   color: white;
   min-height: 100vh;
@@ -22,14 +22,14 @@
   padding-bottom: 2rem;
 }
 
-/* Container utama */
+/* Main container */
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1rem;
 }
 
-/* Judul utama */
+/* Main heading */
 h1 {
   font-size: 3rem;
   font-weight: 700;
@@ -44,12 +44,11 @@ h1 {
   }
 }
 
-/* Styling untuk produk di keranjang */
+/* Styling for cart items */
 .cart-item {
   display: flex;
   justify-content: space-between;
   padding: 1rem;
-  background: rgba(255, 255, 255, 0.1);
   margin-bottom: 1rem;
   border-radius: 8px;
 }
@@ -63,6 +62,7 @@ h1 {
 .cart-item-details span {
   font-size: 1.1rem;
   color: white;
+  background: none; /* Removed background for a cleaner look */
 }
 
 .cart-item-remove {
@@ -83,7 +83,7 @@ h1 {
   outline: none;
 }
 
-/* Responsive untuk produk dan keranjang */
+/* Responsive for smaller screens */
 @media (max-width: 640px) {
   .container {
     padding: 0 0.5rem;
