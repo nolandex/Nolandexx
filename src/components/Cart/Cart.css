@@ -1,31 +1,68 @@
-import React from "react";
-import "./Cart.css";
+/* Cart container */
+.cart {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  padding: 1.5rem;
+  color: white;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
 
-const Cart = ({ cart, onRemove }) => {
-  const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+/* Cart heading */
+.cart h2 {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
 
-  return (
-    <div className="cart">
-      <h2>Keranjang</h2>
-      {cart.map((item, index) => (
-        <div className="cart-item" key={index}>
-          <div className="cart-item-details">
-            <span>{item.product}</span>
-            <span>{item.variant}</span>
-            <span>Rp {item.price.toLocaleString("id-ID")} x {item.quantity}</span>
-          </div>
-          <button
-            className="cart-item-remove"
-            onClick={() => onRemove(index)}
-            aria-label="Hapus item"
-          >
-            Hapus
-          </button>
-        </div>
-      ))}
-      <h3>Total: Rp {total.toLocaleString("id-ID")}</h3>
-    </div>
-  );
-};
+/* Cart item layout */
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+}
 
-export default Cart;
+/* Cart item details */
+.cart-item-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  text-align: left;
+  flex: 1;
+}
+
+.cart-item-details span {
+  font-size: 1.1rem;
+  color: white;
+}
+
+/* Delete button */
+.cart-item-remove {
+  background: #ff3b30;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  margin-left: 1rem;
+}
+
+.cart-item-remove:hover {
+  background: #ff4d4d;
+}
+
+/* Cart total */
+.cart h3 {
+  text-align: right;
+  margin-top: 20px;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
